@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>簡介 - Parser 套件 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+			<h2>Parser 套件</h2>
+
+			<p>Parser 套件擴展核心視圖類別，能夠使用任何你想要的樣板解析器。</p>
+
+			<section>
+				<h2 id="intro">簡介</h2>
+
+				<p>Parser 套件不改變任何你使用視圖的方法，但它將能讓你使用任何你想要的樣板解析器取代 PHP。這套件有著許多解析器的驅動，像 Mustache、Markdown、Twig 和 Smarty。</p>
+
+				<p>使用哪個解析器取決於你的視圖副檔名。通常視圖副檔名為 <kbd>.php</kbd> 且會使用 PHP 解析樣板, 這些 <kbd>.php</kbd> 副檔名也可以被省略。所有的驅動都有自己特定的副檔名，例如 <kbd>foo.mustache</kbd>
+					將使用 Mustache 驅動，而 <kbd>foo.tpl</kbd> 將使用 Dwoo 驅動（預期副檔名可在配置中被改變）。
+                                </p>
+
+				<section>
+					<h3 id="install">安裝</h3>
+
+					<p>Parser 套件包含在 Fuel 下載中，要使用你必須先添加啟用至你的配置：</p>
+					<pre class="php"><code>'packages' => array(
+	'parser',
+),</code></pre>
+
+					<p>雖然很多驅動被包含在內，大多數常式庫沒有。只有 Mustache 與 Markdown 被包含在套件的 <kbd>vendor</kbd> 目錄，且開箱即用。
+                                                其他解析器你必須從他們的網站下載，如果你想要在不改變他們被預期在 <kbd>app/vendor/{Lib_name}</kbd>
+                                                （其中 <kbd>Lib_name</kbd> 的第一個字符是大寫的）的配置下運行。
+						</p>
+				</section>
+
+				<section>
+					<h3 id="configuration">配置</h3>
+
+					<p>Parser 能在 config/parser.php 檔案中被配置，且使用以下的鍵：</p>
+
+					<table class="config">
+						<tbody>
+							<tr class="header">
+								<th>變數</th>
+								<th>類型</th>
+								<th>預設</th>
+								<th>描述</th>
+							</tr>
+							<tr>
+								<th>extensions</th>
+								<td>陣列</td>
+								<td>（包含擴展與解析的視圖類別的陣列）</td>
+								<td>
+									定義哪些擴展是有效的以及他們的視圖驅動是什麼。
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h3 id="runtime_configuration">執行階段配置</h3>
+
+					<p>所有驅動都有一個 <kbd>parser()</kbd> 方法能讓你訪問當前的 Parser 物件。這是一個慣例而非必要條件，且不同的第三方驅動程序可能會有所不同。</p>
+
+					<pre class="php"><code>// 使用 SimpleTags 的範例
+$view = View::forge('example.stags');
+$view->parser()->set_delimiters('{', '}');
+
+// 靜態用法的範例
+View_SimpleTags::parser()->set_delimiters('{', '}');</code></pre>
+				</section>
+
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

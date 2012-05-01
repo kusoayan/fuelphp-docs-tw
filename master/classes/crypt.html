@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Crypt::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Crypt - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Crypt 類別</h2>
+	
+			<p>
+				Crypt 類別允許加密或解密一個字串。Crypt 類別也可用於內部例如 Fuel Session 類別。
+			</p>
+			<p>它使用由 PHPSecLib 提供的加密和雜湊方法，所以它不是依賴外部模組如 mcrypt 來作用的。</p>
+	
+			<section>
+				<h3 id="configuration">配置</h3>
+	
+				<p>
+					The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
+				</p>
+				<p class="note">
+					Note that this will require write access to app/config/crypt.php! If this is not possible, make sure all configuration settings are set!
+				</p>
+				<p>以下配置設定可以被定義：</p>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>變數</th>
+							<th>類型</th>
+							<th>預設</th>
+							<th>描述</th>
+						</tr>
+						<tr>
+							<th>crypto_key</th>
+							<td>字串</td>
+							<td>n/a</td>
+							<td>
+								Random encryption key value used in the encryption routines. Make sure you set this to something unique and random!
+							</td>
+						</tr>
+						<tr>
+							<th>crypto_iv</th>
+							<td>字串</td>
+							<td>n/a</td>
+							<td>
+								Random encryption initialisation vector used in the encryption routines. Make sure you set this to something unique and random!
+							</td>
+						</tr>
+						<tr>
+							<th>crypto_hmac</th>
+							<td>字串</td>
+							<td>n/a</td>
+							<td>
+								Random value used in the Hash-based Message Authentication Code (HMAC) routines. Make sure you set this to something unique and random!
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="note">
+					If you assign keys manually, note that they are base64_encoded, and the length must be a multiple of 4 to be able to decode it. Make sure the length is correct!
+				</p>
+			</section>
+	
+			<article>
+				<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
+				<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><i>必要</i></td>
+									<td>String value to encode.</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Optional custom key value to be used to encode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// encode a variable with a custom key
+$value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
+				<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><i>必要</i></td>
+									<td>String value to decode.</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>Optional custom key value to be used to decode the value passed. If false, the config value '<strong>crypto_key</strong>' is used.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>mixed - String value with the decoded value, or <kbd>false</kbd> if the value could not be decoded.</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// decode a variable with a custom key
+$value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

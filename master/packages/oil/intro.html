@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>簡介 - Oil 套件 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Oil 工具</h2>
+
+			<p>Oil 工具是特別的套件，命令可被使用於許多地方，以促進快速發展，幫助測試你的應用程式及運行<a href="../../general/tasks.html">任務</a>。</p>
+
+			<section>
+
+				<p>Oil 是一個可選的命令列實用工具，旨在幫助加快發展，提供多種函數：</p>
+
+				<ul>
+					<li><a href="../../packages/oil/generate.html">產生</a> - 建構 MVC 模組、遷移及整個腳手架。</li>
+					<li><a href="../../packages/oil/refine.html">精煉</a> - 運行任務如遷移與你自定義的。</li>
+					<li><a href="../../packages/oil/package.html">套件</a> - 安裝、升級及移除套件。</li>
+					<li><a href="../../packages/oil/console.html">控制台</a> - 使用 shell 即時測試你的代碼。</li>
+				</ul>
+
+				<p>
+					這些命令都以不同的方式來實現不同的東西，但進入前，最好確認你是在正確的文件夾，且 Oil 是可運行的。
+				</p>
+
+				<pre class="cli"><code>$ cd Sites/fuel
+$ php oil -v
+Fuel: 1.1</code></pre>
+
+				<h3 id="help">行內幫助</h3>
+
+				<p>Oil 含有自己的基本文件，可以通過鍵入命令找到：</p>
+
+				<pre class="cli"><code>$ php oil help
+
+Usage:
+  php oil [console|generate|help|test|package]
+
+Runtime options:
+  -f, [--force]    # Overwrite files that already exist
+  -s, [--skip]     # Skip files that already exist
+  -q, [--quiet]    # Suppress status output
+
+Description:
+  The 'oil' command can be used in several ways to facilitate quick development, help with
+  testing your application and for running Tasks.
+
+Documentation:
+  http://docs.fuelphp.com/packages/oil/intro.html
+</code></pre>
+
+				<p>這些命令都有自己的幫助章節，可以通過鍵入找到：</p>
+
+				<pre class="cli"><code>$ php oil generate help</code></pre>
+
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

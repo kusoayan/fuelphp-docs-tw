@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Redis::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Redis - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<h2>Redis 類別</h2>
+	
+			<p>Redis 類別能讓你與 <a href="http://redis.io/">Redis</a> 鍵 - 值儲藏相互作用。</p>
+	
+			<article>
+				<h4 class="method" id="method_instance">instance($name = 'default')</h4>
+				<p>建立一個新的已命名的 redis 的實例，或回傳一個已命名的實例如果它先前已建立。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><i><pre class="php"><code>'default'</code></pre></i></td>
+									<td>請求的 Redis 實例名稱，如應用程式配置 db.php 檔案所定義。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>Fuel\Core\Redis 物件</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// 建立 Redis 'mystore' 實例
+$redis = Redis::instance('mystore');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 id="redis_commands">Redis 命令</h4>
+				<p>一旦你使用 instance() 方法建立一個 Redis 物件，每個有效的 Redis 命令（見 <a href="http://redis.io/commands">Redis 文件</a>）作為該物件的方法。</p>
+				<p>一些範例：</p>
+				<pre class="php"><code>// 建立 Redis 'mystore' 實例
+$redis = Redis::instance('mystore');
+
+// 建立一些測試資料
+$redis->rpush('particles', 'proton');
+$redis->rpush('particles', 'electron');
+$redis->rpush('particles', 'neutron');
+
+// 提取範圍
+$particles = $redis->lrange('particles', 0, -1);
+
+// 計算元素的數量
+$particle_count = $redis->llen('particles');
+
+// 顯示結果
+echo "&lt;p>The {$particle_count} particles that make up atoms are:&lt;/p>";
+echo "&lt;ul>";
+foreach ($particles as $particle) {
+  echo "&lt;li>{$particle}&lt;/li>";
+}
+echo "&lt;/ul>";
+</code></pre>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

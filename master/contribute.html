@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './';
+	</script>
+	<script src="./assets/js/combined.js"></script>
+	<title>貢獻 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>貢獻</h2>
+
+			<h3 id="introduction">簡介</h3>
+
+			<p>
+				Fuel 是一個社群驅動的框架，並且開放來自任何認為他們可以改進或添加特色，以使框架到達更高水準的人所作出的貢獻。有許多形式可以做到這一點，從寫教學、編寫和發布套件，以促進成為 Fuel 的正式部分（核心、Orm、文檔等……）。
+			</p>
+
+			<h3 id="fixing_bugs">修正錯誤</h3>
+
+			<p>
+				當你遭遇一個錯誤，或看到問題清單中你能或已解決的問題，並且你想要將其貢獻回框架。使用 GitHub 發送一個拉出請求，這取決於你正在運行你所拉出的哪個版本分支。依循接下來的幾個步驟當你請求一個拉出：
+			</p>
+
+			<ul>
+				<li>
+					<strong>是否我目前的版本仍然被支持？</strong><br/>
+					若否，升級到一個被支持的版本並查看錯誤是否仍然存在。
+				</li>
+				<li>
+					<strong>在你本地的容器切換至你的版本</strong><br/>
+					<code class="cli">$ git checkout -b 1.1/develop origin/1.1/develop</code>
+					or
+					<code class="cli">$ git checkout -b 1.0/develop origin/1.0/develop</code>
+				</li>
+				<li>
+					<strong>在你本地的容器修正錯誤並送交</strong><br/>
+					使用一個描述性的和能理解的送交訊息。
+					<code class="cli">$ git commit -m "This is my awesome description."</code>
+				</li>
+				<li>
+					<strong>將其推送至你的 GitHub 帳戶</strong><br/>
+					<code class="cli">$ git push</code>
+				</li>
+				<li>
+					<strong>請求拉出</strong><br/>
+					在你所在相同的分支上請求拉出（或取決於你的分支）。一個 1.0/develop 分支在 1.0/develop 請求拉出，1.1/develop 在 1.1/develop，以此類推。使用「更新送交範圍」介面以引導你在正確的分支請求。
+				</li>
+				<li>
+					<strong>等待你出名的時刻</strong><br/>
+					只要你的請求被合併，你將會成為名人堂中貢獻者名單一部分。
+				</li>
+			</ul>
+
+			<h3 id="enhancements">非錯誤貢獻</h3>
+
+			<p>
+				非錯誤的貢獻是指新特色、優化和所有其他的改動。所有這些請求，必須在最新發展分支動作。所以拉出最新版本的 Dev 分支進行變更，並請求一個拉出。
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

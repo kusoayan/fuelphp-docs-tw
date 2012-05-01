@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Migrate::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Migrate - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<h2>Migrate 類別</h2>
+	
+			<p>Migrate 類別能讓你從你的控制器運行、穿行與恢復 <a href="../general/migrations.html">遷移</a> 。</p>
+
+			<article>
+				<h4 class="method" id="method_current">current()</h4>
+				<p>運行 up 與 down 方法到遷移配置裡當前設定的遷移。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>無</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>布林</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre><code>Migrate::current();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_latest">latest()</h4>
+				<p>為曾經的遷移運行 up 方法，在遷移文件夾裡當前與最後的版本之間。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>無</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>布林</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre><code>Migrate::latest();</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_version">version($version)</h4>
+				<p><strong>version</strong> 方法將移動遷移往上或往下，以設定架構在一個特定的遷移。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th>描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$version</kbd></th>
+									<td><i>必要</i></td>
+									<td>你要遷移的版本。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>混合 - 依據 <var>$return_type</var>。</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>Migrate::version($version)</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

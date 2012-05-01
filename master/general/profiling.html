@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>剖析 - 一般 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+			<h2>剖析</h2>
+
+			<p>綁定於 FuelPHP 的應用程式分析器是基於 <a href="http://particletree.com/features/php-quick-profiler/">PHP Quick Profiler</a>。</p>
+
+			<h3 id="what_is_profiling">剖析是什麼？</h3>
+
+			<p>
+				The profiler provides profiling and debugging related information without needing them to add a lot of programmatic overhead
+				to the code. You only need to toggle one config setting to true and you have access to an automated tool to help create a
+				faster and more consistent review experience. Since anyone can use it, the profiler also gives you an idea of where the code
+				stands before the review.
+			</p>
+
+			<p>分析器提供一個標籤介面，你可以在其中找到以下資訊：</p>
+			<ul>
+				<li>Console. This is the default tab, and gives you information about errors, log entries, memory usage or execution timings.</li>
+				<li>Load time. This is the request load time. It will display execution details in the body of the tab.</li>
+				<li>Database. The number of queries executed, the execution time, and if supported, a query analysis.</li>
+				<li>Memory. Total peak memory used by the request.</li>
+				<li>Files. The fully qualified name of all PHP files included, and their size.</li>
+				<li>Config. The contents of the configuration store at the end of the request.</li>
+				<li>Session. The contents of the session store at the end of the request.</li>
+				<li>GET. The contents of the $_GET array.</li>
+				<li>POST. The contents of the $_POST array.</li>
+			</ul>
+
+			<p>一個典型的分析器螢幕看起來像這樣：<img width="850" src="../assets/img/profiler.png" /></p>
+
+			<p>在分析器螢幕的底部，你將發現三個選項：</p>
+			<ul>
+				<li>Bottom. By default, the profiler is an overlay. Click on this option if you want to see all output, the profiler will move past the end of your output. Click again and it will move back.</li>
+				<li>Height. Toggle between a large (like in the screenshot) or small profiler panel.</li>
+				<li>Details. Toggle the profiler details. If switched off, only the tab bar will be visible.</li>
+			</ul>
+
+			<h3 id="application_profiling">應用程式剖析</h3>
+
+				<p>
+					剖析你的應用程式預設是停用的。你可以配置 Fuel 去啟動分析器藉由你的應用程式 config/config.php 檔案。
+				</p>
+				<pre class="php"><code>'profiling'  => true,
+</code></pre>
+				<p>
+					After the profiler has been enabled, you will see it pop up at the bottom of your browser window.
+				</p>
+
+			<h3 id="database_profiling">資料庫剖析</h3>
+
+				<p>
+					剖析你的資料庫連線預設也是停用的。Database profiling is activated on a per connection basis, and can be
+					activated by setting the 'profiler' option of the connection configuration in your config/db.php to true.
+				</p>
+
+				<pre class="php"><code>'profiling'  => true,
+</code></pre>
+				<p class="note">如果你使用多個環境，確認選擇正確的 db.php 配置檔案。</p>
+
+			<h3 id="adding_profiler_information">添加資訊到分析器</h3>
+
+				<p>見 <a href="../classes/profiler.html">Profiler</a> 類別的文件，以了解你能如何與分析器互動。</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

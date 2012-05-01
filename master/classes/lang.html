@@ -1,0 +1,277 @@
+﻿<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Lang::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Lang - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+		
+			<h2>Lang 類別</h2>
+	
+			<p>Lang 類別能讓你在你的應用程式中，使用語言檔案設定語言變數。</p>
+	
+			<article>
+				<h4 class="method" id="method_load">load($file, $group = null)</h4>
+				<p><strong>load</strong> 方法能讓你載入一個語言檔案。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$file</kbd></th>
+									<td><i>必要</i></td>
+									<td>所需的文件路徑。你可以加上一個命名空間的前綴以載入一個已載入的套件或模組的配置檔案。</td>
+								</tr>
+								<tr>
+									<th><kbd>$group</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>設定要使用的語言組。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>空</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// 語言檔案的例子：
+return array(
+	'hello' => 'Hello :name',
+	'something'=> 'something :name!',
+	'test'=> array('hello' => 'Hello', 'something' => 'Plop') // Group
+);
+
+// 載入 example.php。
+// 註：如果在配置裡沒有語言被設定，將會退至 English。
+Lang::load('example');
+
+// 將載入給定的檔案進 'test' 群組。
+Lang::load('example', 'test');
+
+// 輸出 Plop
+$this->output = Lang::line('test.test.something');
+
+// 將從模組 'foo' 載入 example 語言檔案進 'bar' 群組。
+Lang:load('foo::example', 'bar');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_get">get($line, $params = array())</h4>
+				<p><strong>get</strong> 方法能讓你從語言檔案取得特定行。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$line</kbd></th>
+									<td><i>必要</i></td>
+									<td>所需行的識別符。</td>
+								</tr>
+								<tr>
+									<th><kbd>$parameters</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>設定一個能被傳遞至行的參數陣列。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>混合。如果找到是字串，否則是 false</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// 輸出 Hello world
+$this->output = Lang::get('hello', array('name' => 'world');
+
+// 輸出 Plop
+$this->output = Lang::get('test.something');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<article>
+				<h4 class="method" id="method_set">set($line, $value, $group = null)</h4>
+				<p><strong>set</strong> 方法能讓你設定一個特定行至語言檔案。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$line</kbd></th>
+									<td><i>必要</i></td>
+									<td>所需行的識別符。</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>設定行的值。</td>
+								</tr>
+								<tr>
+									<th><kbd>$group</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>設定要使用的語言組。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>空</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// 回傳 true
+Lang::set('hello', 'Ahoy!');
+
+// 使用群組
+Lang:set('hello', 'Ahoy!', 'test');
+
+// 也可如上運作
+Lang::load('test', 'test);
+Lang::set('hello', 'Ahoy!');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+	
+			<h3 id="procedural_helpers">程序助手</h3>
+	
+			<article>
+				<h4 id="function___">__($string, $params = array())</h4>
+				<p><strong>__</strong> 函數是 <a href="#method_line">Lang::line</a> 的別名。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$string</kbd></th>
+									<td><i>必要</i></td>
+									<td>所需行的識別符。</td>
+								</tr>
+								<tr>
+									<th><kbd>$parameters</kbd></th>
+									<td><pre class="php"><code>array()</code></pre></td>
+									<td>設定一個能被傳遞至行的參數陣列。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串，來自 <a href="#method_line">Lang::line</a> 的結果</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>// 輸出 Hello world
+$this->output = __('hello', array('name' => 'world');
+
+// 輸出 Plop
+$this->output = __('test.something');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

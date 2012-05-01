@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>類別 - 一般 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>類別</h2>
+
+			<h3 id="what_is_a_class">類別是什麼？</h3>
+
+			<p>類別就是普通的 PHP 類別。它不需要擴展任何東西，或跟隨任何協定除了命名協定，Fuel 內的所有其他類別也相同。</p>
+
+			<pre class="php"><code>class Session</code></pre>
+
+			<p>將載入 app/classes/session.php。</p>
+
+			<h3 id="loading_classes">載入類別</h3>
+
+			<p>不像一些其他框架，類別不需要手動載入。當你在代碼中引用它們（控制器、模型等），它們將會自動載入。</p>
+
+			<h3 id="classes_subdirectories">子目錄中的類別</h3>
+
+			<p>就像 <a href="controllers/base.html">Controllers</a>，類別必須是小寫且第一個字母大寫，同時底線將置類別於子目錄。</p>
+
+			<pre class="php"><code>Class Session_Driver</code></pre>
+
+			<p>將載入 app/classes/session/driver.php</p>
+
+			<article>
+				<h2 id="init_method">初始化你的類別</h2>
+
+				<p>類別被載入時，使 Fuel 的自動載入器實施某些自動的任務是可能的，有點像類別的實例 <code>__construct()</code> 所做的。
+					你可以通過添加一個公開的靜態 <code>_init()</code> 方法到類別達成。</p>
+
+				<pre class="php"><code>class Example {
+	public static function _init()
+	{
+		// 緊接在載入類別後被呼叫
+	}
+}</code></pre>
+
+				<p class="note">如果一個被載入的類別有它自己的 <code>_init()</code> 方法及父層，必須跟著被載入，父層的初始化方法不會被呼叫，除非你使用
+					<code>parent::_init();</code></p>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

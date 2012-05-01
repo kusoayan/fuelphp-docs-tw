@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../../';
+	</script>
+	<script src="./../../../assets/js/combined.js"></script>
+	<title>Introduction - Obervers - Orm Package - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+		
+			<h2>Orm</h2>
+	
+			<p>Orm 是 <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">物件關聯對應（Object
+				Relational Mapper）</a> 的簡寫，它做兩件事：<br />對應你資料庫裡的資料列到物件，並能讓你在這些物件之間建立關係。<br />
+				它緊隨 <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">活動記錄模式（
+				Active Record Pattern）</a>，但也受到其他系統的影響。</p>
+	
+			<article>
+				<h3 id="intro">Observers: Introduction</h3>
+	
+				<p>An event based system to allow you to add behavior to specific events. When an event is observed the
+					Orm will automatically call all the added observers to see if there's anything for them to do.</p>
+	
+				<ul>
+					<li><a href="intro.html#add_observers">Adding observers to your model</a></li>
+					<li><a href="included.html">Included observers</a></li>
+					<li><a href="creating.html">Creating your own Observers</a></li>
+				</ul>
+			</article>
+	
+			<article id="add_observers">
+				<h3 id="adding">Adding observers to your model</h3>
+	
+				<p>You can add observers in 2 ways: just add the name to have the observer called for all events or with
+					the observer as name and an array of specific events for which the observer is called.<br />
+					When the Observer is in the same namespace as the Model and prefixed with <kbd>Observer_</kbd> you can
+					leave out the "Observer_" prefix. In all other cases you have to provide the full classname.</p>
+	
+				<pre class="php"><code>class Model_Article
+{
+	protected static $_observers = array(
+		'example', // will call Observer_Example class for all events
+		'Orm\\Observer_CreatedOn' => array('before_insert'), // will only call Orm\Observer_CreatedOn at before_insert event
+	);
+}</code></pre>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

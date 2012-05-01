@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Form::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Form - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>Format 類別</h2>
+
+			<p>Format 類別幫助你在各種格式間轉換，如 XML、JSON、CSV 等。</p>
+
+			<article>
+				<h4 class="method" id="method_factory">factory($data = null, $from_type = null)</h4>
+				<p><strong>factory</strong> 方法回傳一個新格式物件。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>是</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>要轉換的資料。</td>
+								</tr>
+								<tr>
+									<th><kbd>$from_type</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>所提供的資料格式。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>Fuel\Core\Format 物件</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$array = array('foo' => 'bar');
+print_r( Format::forge( $array ) );
+
+// 回傳
+Fuel\Core\Format Object
+(
+	[_data:protected] => Array
+		(
+			[foo] => bar
+		)
+)</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_array">to_array($data = null)</h4>
+				<p><strong>to_array</strong> 方法回傳給定的資料為陣列。不要直接呼叫，使用 <strong>factory</strong> 方法如同範例所描述。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>要轉換的資料。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>陣列</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
+print_r( Format::forge( $json_string, 'json' )->to_array() );
+
+// 回傳
+Array
+(
+    [foo] => bar
+    [baz] => qux
+)</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_xml">to_xml($data = null, $structure = null, $basenode = 'xml')</h4>
+				<p><strong>to_xml</strong> 方法回傳給定的資料為一個 XML 字串。不要直接呼叫，使用 <strong>factory</strong> 方法如同範例所描述。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>參數</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>變數</th>
+									<th>預設</th>
+									<th class="description">描述</th>
+								</tr>
+								<tr>
+									<th><kbd>$data</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>要轉換的資料。</td>
+								</tr>
+								<tr>
+									<th><kbd>$structure</kbd></th>
+									<td><pre class="php"><code>null</code></pre></td>
+									<td>SimpleXMLElement 類別物件。</td>
+								</tr>
+								<tr>
+									<th><kbd>$basenode</kbd></th>
+									<td>"xml"</td>
+									<td>XML 標記的基本節點。</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
+print_r( Format::forge( $array )->to_xml() );
+
+// 回傳
+// &lt;?xml version="1.0" encoding="utf-8"?&gt;
+// &lt;xml&gt;
+// 	&lt;foo&gt;bar&lt;/foo&gt;
+// 	&lt;baz&gt;qux&lt;/baz&gt;
+// &lt;/xml&gt;</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_csv">to_csv()</h4>
+				<p><strong>to_csv</strong> 方法回傳給定的資料為一個 CSV 字串。不要直接呼叫，使用 <strong>factory</strong> 方法如同範例所描述。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$json_string = '{"foo":"bar","baz":"qux"}';
+print_r( Format::forge( $json_string, 'json' )->to_csv() );
+
+// 回傳
+//
+// foo,baz
+// "bar","qux"</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+			<article>
+				<h4>to_json()</h4>
+				<p><strong>to_json</strong> 方法回傳給定的資料為一個 JSON 字串。不要直接呼叫，使用 <strong>factory</strong> 方法如同範例所描述。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
+print_r( Format::forge( $array )->to_json() );
+
+// 回傳
+// {"foo":"bar","baz":"qux"}</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_serialized">to_serialized()</h4>
+				<p><strong>to_serialized</strong> 方法回傳給定的資料為一個序列化字串。不要直接呼叫，使用 <strong>factory</strong> 方法如同範例所描述。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$array = array('foo' => 'bar', 'baz' => 'qux');
+print_r( Format::forge( $array )->to_serialized() );
+
+// 回傳
+// a:2:{s:3:"foo";s:3:"bar";s:3:"baz";s:3:"qux";}</code>
+							</pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_to_php">to_php()</h4>
+				<p><strong>to_php</strong> 方法回傳給定的資料為 PHP 表達字串中的資料。你可以傳進 eval() 或用做其他瘋狂的事情。</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">靜態</th>
+						<td>否</td>
+					</tr>
+					<tr>
+						<th>回傳</th>
+						<td>字串</td>
+					</tr>
+					<tr>
+						<th>範例</th>
+						<td>
+							<pre class="php"><code>$array = array (1, 2, array ("a", "b", "c"));
+echo Format::forge( $array )->to_php();
+
+// 回傳
+"array (
+  0 => 1,
+  1 => 2,
+  2 =>
+  array (
+    0 => 'a',
+    1 => 'b',
+    2 => 'c',
+  ),
+)"</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

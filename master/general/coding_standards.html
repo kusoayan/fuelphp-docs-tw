@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>編碼標準 - 一般 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>編碼標準</h2>
+
+			<p>這些代碼格式與文件的標準，必須被任何對 Fuel 貢獻的人遵循，任何不符合這些準則的貢獻將不被接受。</p>
+
+			<h3 id="file_formatting">檔案格式</h3>
+
+			<h5 id="closing_php_tag">PHP 結束標記</h5>
+
+			<p>只包含 PHP 代碼的文件應該總是省略 PHP 結束標記（?>）。這可以防止許多難以捉摸的死亡白螢幕。</p>
+
+			<h5 id="indentation">縮排</h5>
+
+			<p>所有縮排應該使用真正的 tab，而非空格。<br />
+				但對齊縮排後的物件應該使用空格，而非 tab。</p>
+
+			<pre class="php"><code>		// 縮排 2 個 tab
+		$var       = 'something';  // indented with tabs and aligned value &amp; comments
+		$variable  = 'else';       // with those above/below using spaces</code></pre>
+
+			<h5 id="line_endings">行結尾</h5>
+
+			<p>行結尾應為 Unix-style LF。</p>
+
+			<h5 id="file_naming">檔案命名</h5>
+
+			<p>所有檔案名稱必須全小寫，沒有例外。</p>
+
+			<h5 id="encoding">編碼</h5>
+
+			<p>檔案應以 UTF-8 編碼儲存且不應該使用 BOM。</p>
+
+			<h3 id="naming_conventions">命名約定</h3>
+
+			<h5 id="namespaces">命名空間</h5>
+
+			<p>所有核心類別必須在 Fuel\Core 命名空間底下。</p>
+
+			<pre class="php"><code>namespace Fuel\Core;</code></pre>
+
+			<h5 id="classes">類別</h5>
+
+			<p>類別名稱應該使用底線來分隔單詞，並且類別名稱的每個單詞應以大寫字母開始。
+				An underscore will, however, be converted to a directory separator during autoloading. The
+				use of camelcase is discouraged but cannot be prevented in some cases when putting the class in a
+				subdirectory makes no sense.</p>
+
+			<pre class="php"><code>namespace Fuel\Core;
+
+class Session
+{
+
+}</code></pre>
+
+			<pre class="php"><code>namespace Fuel\Core;
+
+class Session_Cookie extends Session_Driver
+{
+
+}</code></pre>
+
+			<p>This would result in the following file path:</p>
+
+			<pre class="php"><code>core/classes/session.php
+core/classes/session/cookie.php</code></pre>
+
+			<h5 id="methods">方法</h5>
+
+			<p>Like class names, method names should use underscores to separate words, not CamelCase. Method names should
+				also be all lower case. Visibility should always be included (public, protected, private).<br />
+				An underscore can be used at the beginning of the name to make it clear the method is protected/private or
+				to signify it should be considered as such when you need it public.</p>
+
+			<pre class="php"><code>class Session
+{
+
+	public static function get_flash($name, $data)
+	{
+		// Some code here
+	}
+
+}</code></pre>
+
+			<pre class="php"><code>class View
+{
+
+	// Array of global view data
+	protected static $_global_data = array();
+
+	protected static function capture($view_filename, array $view_data)
+	{
+		// Some code here
+	}
+
+}</code></pre>
+
+			<h5 id="variables">變數</h5>
+
+			<p>Variable names should be concise and contain only lower case letters and underscores. Loop iterators should
+				be short, preferably a single character.</p>
+
+			<pre class="php"><code>$first_name
+$buffer
+for ($i = 0; $i &lt; $max; $i++)</code></pre>
+
+			<h5 id="constants">常數</h5>
+
+			<p>Constants follow the same guide lines as variables with the exception that constants should be all upper
+				case.</p>
+
+			<pre class="php"><code>MY_CONSTANT
+TEMPLATE_PATH
+TEXT_DEFAULT</code></pre>
+
+			<h3 id="keywords">保留字</h3>
+
+			<p>Keywords such as <kbd>true</kbd>, <kbd>false</kbd>, <kbd>null</kbd>, <kbd>as</kbd>, etc should be all lower case, as upper case is reserved for
+				constants. Same goes for primitive types like <kbd>array</kbd>, <kbd>integer</kbd>, <kbd>string</kbd>.</p>
+
+			<pre class="php"><code>$var = true;
+$var = false;
+$var = null;
+foreach ($array as $key => $value)
+public function my_function(array $array)
+function my_function($arg = null)</code></pre>
+
+			<h3 id="control_structures">控制結構</h3>
+
+			<p>The structure keywords such as <kbd>if</kbd>, <kbd>for</kbd>, <kbd>foreach</kbd>, <kbd>while</kbd>, <kbd>switch</kbd> should be followed by a space as should
+				parameter/argument lists and values. Braces should be placed on a new line, and <kbd>break</kbd> should have the same
+				tab as its case.</p>
+
+			<pre class="php"><code>if ($arg === true)
+{
+	//do something here
+}
+elseif ($arg === null)
+{
+	//do something else here
+}
+else
+{
+	//catch all do something here
+}
+foreach ($array as $key => $value)
+{
+	//loop here
+}
+for ($i = 0; $i < $max; $i++)
+{
+	//loop here
+}
+while ($i < $max)
+{
+	//loop here
+}
+switch ($var)
+{
+	case 'value1':
+		//do something here
+	break;
+	default :
+		//do something here
+	break;
+}</code></pre>
+
+			<h5 id="alternative_if">Alternative if statements</h5>
+
+			<p>In some cases, a full <kbd>if</kbd> statement is a bit too much code for a simple conditional assignment or function
+				call. In those cases, you can use PHP's execution logic to use a shorter boolean-operator based syntax.
+				Using <kbd>and</kbd> means the second part only gets evaluated if the first part were true, using
+				<kbd>or</kbd> means the second part only gets executed if the first part were false.<br />
+				Don't use this when both <kbd>if</kbd> and <kbd>else</kbd> are needed, just in cases like single conditional statements.</p>
+
+			<pre class="php"><code>// instead of if (isset($var)) { Config::set('var', $var); }
+isset($var) and Config::set('var', $var);
+
+// instead of if ( ! isset($var)) { $var = Config::get('var'); }
+isset($var) or $var = Config::get('var');
+
+// DON'T DO THIS
+Uri::segment(3) and $var = Uri::segment(3);
+Uri::segment(3) or $var = 'default';
+
+// This is better:
+if (Uri::segment(3))
+{
+	$var = Uri::segment(3);
+}
+else
+{
+	$var = 'default';
+}
+
+// Or this:
+$var = Uri::segment(3) ? Uri::segment(3) : 'default';
+// Or actually this:
+$var = Uri::segment(3) ?: 'default';</code></pre>
+
+			<h3 id="comparison_logical">Comparisons, Logical operators</h3>
+
+			<p>Comparing function/method returns and variables should be type aware, for example some functions may return
+				<kbd>false</kbd>, and when comparing this return the type sensitive operators such as <kbd>===</kbd> or <kbd>!==</kbd>. Additionally, use of
+				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&&</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
+				<kbd>&&</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
+
+			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
+if ($var === false or my_function() !== false)
+if ( ! $var)</code></pre>
+
+			<h5 id="class_interface">Class/Interface 聲明</h5>
+
+			<p>Class/interface 聲明有以下行的左大括號：</p>
+
+			<pre class="php"><code>class Session
+{
+
+}</code></pre>
+
+			<h5 id="function_method">Function/Method 聲明</h5>
+
+			<p>Function/Method 的左大括號必須總是在新的一行開始，其結構具有相同的縮排。</p>
+
+			<pre class="php"><code>class Session
+{
+
+	public static function get_flash($name, $data)
+	{
+		// Some code here
+	}
+
+}</code></pre>
+
+			<h5 id="variables">變數</h5>
+
+			<p>When initializing variables, one variable should be declared per line. To enhance code readability, these
+				should each be on a separate line. Align values and comments when appropriate.</p>
+
+			<pre class="php"><code>$var        = ''; // do each on its own line
+$other_var  = ''; // do each on its own line</code></pre>
+
+			<h5 id="brackets_parenthesis">中括號和括號</h5>
+
+			<p>No space should come before or after the initial bracket/parenthesis. There should not be a space before closing bracket/parenthesis.</p>
+
+			<pre class="php"><code>$array = array(1, 2, 3, 4);
+$array['my_index'] = 'something';
+for ($i = 0; $i < $max; $i++)</code></pre>
+
+			<h5 id="quotation">字串引用</h5>
+
+			<p>單引號勝過雙引號。</p>
+
+			<h5 id="concatenation">連接</h5>
+
+			<p>字符連接在加入部分周圍不應該包含空格。</p>
+
+			<pre class="php"><code>//yes
+$string = 'my string '.$var.' the rest of my string';
+
+//no
+$string = 'my string ' . $var . ' the rest of my string';</code></pre>
+
+			<h5 id="operators">運算</h5>
+
+			<pre class="php"><code>$var = 'something';
+if ($var == 'something') //space before and after logical operator
+$var = $some_var + $other_var; //space before and after math operator
+$var++; // 遞增前無空格
+++$var; // 遞增後無空格</code></pre>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

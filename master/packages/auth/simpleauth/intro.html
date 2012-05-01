@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../../';
+	</script>
+	<script src="./../../../assets/js/combined.js"></script>
+	<title>簡介 - SimpleAuth - Auth 套件 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+			<h2>SimpleAuth - 簡介</h2>
+
+			<p>
+				SimpleAuth 是一個被包含在框架內的 Auth 套件。除了作為一個運行中的 Auth 實現，也是其他 Auth 驅動程序的範例。
+				當建立自己的驅動程序時，你可以作為參考使用。
+			</p>
+
+			<h3 id="configuration">配置</h3>
+
+			<p>
+				SimpleAuth 依賴一張資料表，下面是建立它的 SQL：
+			</p>
+
+			<pre class="sql"><code>CREATE TABLE `users` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`username` VARCHAR( 50 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`password` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`group` INT NOT NULL DEFAULT 1 ,
+	`email` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`last_login` VARCHAR( 25 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`login_hash` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`profile_fields` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+	`created_at` INT( 11 ) UNSIGNED NOT NULL ,
+	UNIQUE (
+		`username` ,
+		`email`
+	)
+)</code></pre>
+
+			<p>這是一個簡單的登入 action</p>
+
+			<pre class="php"><code>public function action_login()
+{
+	$data = array();
+	if ($_POST)
+	{
+
+		// Ok，你按下送出按鈕，讓我們瀏覽一遍
+
+		// 首先，讓我們取得一個 auth 物件
+		$auth = Auth::instance();
+
+		// 檢查認證，這裡假設你已經建立上表
+		if ($auth->login($_POST['username'],$_POST['password']))
+		{
+			// 認證成功，進入
+			Response::redirect('success_page');
+		}
+		else
+		{
+			// 哎呀，沒你的湯，再試著登入一次。
+			// 設定一些值以重填使用者名稱欄位，並給一些錯誤的文字到視圖
+
+			$data['username']    = $_POST['username'];
+			$data['login_error'] = 'Wrong username/password combo. Try again';
+		}
+	}
+
+	// 顯示登入表單
+	echo View::forge('owl/login',$data);
+}</code></pre>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

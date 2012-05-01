@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Pagination::";
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>Pagination - 類別 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+				
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />						
+					</p>
+				</form>
+			</div>
+			<nav>
+				
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+		
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+		
+		<div id="main">
+			
+			<h2>Pagination 類別</h2>
+	
+			<p>Pagination 類別能讓你簡單地為你呈現的紀錄設定分頁。</p>
+	
+			<section>
+				<h3 id="how_to">如何</h3>
+				<p>一個簡單的例子如何使用 Pagination 類別，<strong>set_config</strong> 方法在此例子中使用。你可以將它放進你控制器內的 action 方法。
+				<pre class="php"><code>$config = array(
+	'pagination_url' => 'http://localhost/fuel/welcome/index/',
+	'total_items' => 10,
+	'per_page' => 5,
+	'uri_segment' => 3,
+	'template' => array(
+		'wrapper_start' => '&lt;div class="my-pagination"&gt; ',
+		'wrapper_end' => ' &lt;/div&gt;',
+	),
+);
+
+// Config::set('pagination', $config); // 你也可以用這個！
+Pagination::set_config($config);
+
+$data['example_data'] = DB::select('id', 'value')->from('pagination')
+												->limit(Pagination::$per_page)
+												->offset(Pagination::$offset)
+												->execute()
+												->as_array();
+
+$data['pagination'] = Pagination::create_links();
+$this->render('welcome/index', $data);</code></pre>
+			</section>
+	
+			<section>
+				<h3 id="configuration">配置</h3>
+	
+				<p>你可以藉由使用 <strong>set_config</strong> 方法，或設定一個全域配置陣列，兩種方法配置分頁。</p>
+				<p>可定義以下的配置設定：</p>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>變數</th>
+							<th>類型</th>
+							<th>預設</th>
+							<th>描述</th>
+						</tr>
+						<tr>
+							<th>pagination_url</th>
+							<td>字串</td>
+							<td>無</td>
+							<td>
+								有分頁的頁面 URL。
+							</td>
+						</tr>
+						<tr>
+							<th>uri_segment</th>
+							<td>整數</td>
+							<td><pre class="php"><code>3</code></pre></td>
+							<td>
+								URI的部分，包含頁碼。
+							</td>
+						</tr>
+						<tr>
+							<th>num_links</th>
+							<td>整數</td>
+							<td><pre class="php"><code>5</code></pre></td>
+							<td>
+								要顯示的連結總數。
+							</td>
+						</tr>
+						<tr>
+							<th>total_items</th>
+							<td>整數</td>
+							<td><pre class="php"><code>0</code></pre></td>
+							<td>
+								項目總數。
+							</td>
+						</tr>
+						<tr>
+							<th>total_pages</th>
+							<td>整數</td>
+							<td><pre class="php"><code>0</code></pre></td>
+							<td>
+								頁面總數。
+							</td>
+						</tr>
+						<tr>
+							<th>per_page</th>
+							<td>整數</td>
+							<td><pre class="php"><code>10</code></pre></td>
+							<td>
+								每頁筆數。
+							</td>
+						</tr>
+						<tr>
+							<th>template</th>
+							<td>陣列</td>
+							<td><pre class="php"><code></code></pre></td>
+							<td>
+								關聯陣列包含 HTML 標記建立的分頁元素（見全域配置陣列節的陣列鍵／預設值列表）。
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+	
+			<section>
+				<article>
+					<h4 id="global_config">全域配置陣列</h4>
+					<p>這個方法能讓你設定分頁配置藉由設定全域配置陣列。
+					<pre class="php"><code>Config::set('pagination', array(
+	'pagination_url' => 'http://docs.fuelphp.com/',
+	'uri_segment' => 2,
+	'total_items' => 10,
+	'per_page' => 20,
+	'template' => array(
+		'wrapper_start' => '&lt;div class="pagination"&gt; ',
+		'wrapper_end' => ' &lt;/div&gt;',
+		'page_start' => '&lt;span class="page-links"&gt; ',
+		'page_end' => ' &lt;/span&gt;',
+		'previous_start' => '&lt;span class="previous"&gt; ',
+		'previous_end' => ' &lt;/span&gt;',
+		'previous_mark' => '&laquo; ',
+		'next_start' => '&lt;span class="next"&gt; ',
+		'next_end' => ' &lt;/span&gt;',
+		'next_mark' => ' &raquo;',
+		'active_start' => '&lt;span class="active"&gt; ',
+		'active_end' => ' &lt;/span&gt;',
+	),
+));</code></pre>
+				</article>
+	
+				<article>
+					<h4 class="method" id="method_set_config">set_config(array $config)</h4>
+					<p><strong>set_config</strong> 方法能讓你藉由傳遞一個陣列設定分頁配置。</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">靜態</th>
+							<td>是</td>
+						</tr>
+						<tr>
+							<th>參數</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>變數</th>
+										<th>預設</th>
+										<th class="description">描述</th>
+									</tr>
+									<tr>
+										<th><kbd>$config</kbd></th>
+										<td><i>必要</i></td>
+										<td>配置陣列。</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>回傳</th>
+							<td>空</td>
+						</tr>
+						<tr>
+							<th>範例</th>
+							<td>
+								<pre class="php"><code>Pagination::set_config(array(
+    'pagination_url' => 'http://docs.fuelphp.com/',
+	'uri_segment' => 2,
+	'total_items' => 10,
+	'per_page' => 20,
+	'template' => array(
+		'wrapper_start' => '&lt;div class="my-pagination-class"&gt; ',
+		'wrapper_end'   => ' &lt;/div&gt;',
+	),
+));</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+	
+				<article>
+					<h4 class="method" id="method_create_links">create_links()</h4>
+					<p><strong>create_links</strong> 方法在視圖裡產生分頁連結。</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">靜態</th>
+							<td>是</td>
+						</tr>
+						<tr>
+							<th>參數</th>
+							<td>無</td>
+						</tr>
+						<tr>
+							<th>回傳</th>
+							<td>混合</td>
+						</tr>
+						<tr>
+							<th>範例</th>
+							<td>
+								<pre class="php"><code>echo Pagination::create_links();</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+	
+				<article>
+					<h4 class="method" id="method_next_link">next_link($value)</h4>
+					<p><strong>next_link</strong> 方法顯示分頁的「下一頁」連結。</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">靜態</th>
+							<td>是</td>
+						</tr>
+						<tr>
+							<th>參數</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>變數</th>
+										<th>預設</th>
+										<th class="description">描述</th>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><i>必要</i></td>
+										<td>在連結中顯示的文字。</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>回傳</th>
+							<td>混合</td>
+						</tr>
+						<tr>
+							<th>範例</th>
+							<td>
+								<pre class="php"><code>echo Pagination::next_link('Next Page');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+	
+				<article>
+					<h4 class="method" id="method_prev_link">prev_link($value)</h4>
+					<p><strong>prev_link</strong> 方法顯示分頁的「上一頁」連結。</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">靜態</th>
+							<td>是</td>
+						</tr>
+						<tr>
+							<th>參數</th>
+							<td>
+								<table class="parameters">
+									<tr>
+										<th>變數</th>
+										<th>預設</th>
+										<th class="description">描述</th>
+									</tr>
+									<tr>
+										<th><kbd>$value</kbd></th>
+										<td><i>必要</i></td>
+										<td>在連結中顯示的文字。</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<th>回傳</th>
+							<td>混合</td>
+						</tr>
+						<tr>
+							<th>範例</th>
+							<td>
+								<pre class="php"><code>echo Pagination::prev_link('Previous Page');</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+	
+				<article>
+					<h4 class="method" id="method_page_links">page_links()</h4>
+					<p><strong>page_links</strong> 方法顯示分頁在上一頁與下一頁之間的頁面連結。</p>
+					<table class="method">
+						<tbody>
+						<tr>
+							<th class="legend">靜態</th>
+							<td>是</td>
+						</tr>
+						<tr>
+							<th>參數</th>
+							<td>無</td>
+						</tr>
+						<tr>
+							<th>回傳</th>
+							<td>混合</td>
+						</tr>
+						<tr>
+							<th>範例</th>
+							<td>
+								<pre class="php"><code>echo Pagination::page_links();</code></pre>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</article>
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

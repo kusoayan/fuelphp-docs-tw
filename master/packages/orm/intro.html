@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../../';
+	</script>
+	<script src="./../../assets/js/combined.js"></script>
+	<title>簡介 - Orm 套件 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+			<h2>Orm</h2>
+
+			<p>Orm 是 <a href="http://en.wikipedia.org/wiki/Object_relational_mapper" target="_blank">物件關聯對應（Object
+				Relational Mapper）</a> 的簡寫，它做兩件事：<br />對應你資料庫裡的資料列到物件，並能讓你在這些物件之間建立關係。<br />
+				它緊隨 <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">活動記錄模式（
+				Active Record Pattern）</a>，但也受到其他系統的影響。</p>
+
+			<section>
+				<h2 id="intro">簡介</h2>
+
+				<p>不像其他許多的活動記錄（ActiveRecord）實現，我們的小、快速、簡單易用。它試圖使從資料庫建立、更新、和刪除項目盡可能地輕鬆，它為你做所有辛苦的工作。</p>
+			</section>
+
+			<section>
+				<h2 id="install">安裝</h2>
+
+				<p>Orm 套件包含在 Fuel 的下載中，你所需要做的是在你的配置中啟用它。</p>
+				<pre class="php"><code>'packages' => array(
+	'orm',
+),</code></pre>
+			</section>
+
+			<section>
+				<h2 id="troubleshooting">障礙排除</h2>
+
+				<p>一些常見的問題和頻繁的問題。</p>
+
+				<h3>我的 關聯／外鍵 無法被保存 (1)</h3>
+				<p>這最常發生在使用了錯誤類型的關聯關係。尤其 Has-one 與
+					Belongs-to 往往搞混。重讀文件的例子，以確認你使用正確的關聯類型並檢查所有配置是否正確。</p>
+
+				<h3>我無法關聯物件 (2)</h3>
+				<p>確認你的模型是擴展 <code>Orm\Model</code> 而非 <code>Model_Crud</code>。</p>
+
+				<h3>我得到一個在 套件／模組 中無法找到我的關聯模型的例外。</h3>
+				<p>確認套件或模組已被 Fuel 載入，否則自動載入器無法找到類別。<br />
+                                    並且當配置關聯模型 <code>"model_to"</code> 時，其中包括命名空間，<em>即使你在該命名空間</em>。字串中的類別名稱取自全域範圍，無論當前的命名空間。</p>
+
+				<h3>我得到一個 Orm\FrozenObject 例外</h3>
+				<p>物件在被保存到資料庫時不能編輯，以預防循環保存及重複保存已存檔的物件。這不應該發生在正常使用下，且最常見是因為錯誤的配置或關聯所造成。<br />
+					有時候可能是錯誤引起的，尤其當你不是使用穩定發行的版本。</p>
+			</section>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

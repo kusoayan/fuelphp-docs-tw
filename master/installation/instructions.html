@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+	</script>
+	<script src="./../assets/js/combined.js"></script>
+	<title>簡介 - 安裝 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h5>選擇一項：<a href="#command">命令列安裝</a> | <a href="#manual">手動安裝</a></h5>
+			<br />
+			<h3 id="command">命令列安裝</h3>
+		    <p class="note">目前只能在 *nix 系統（Linux、OS X、Unix、等等）運行。</p>
+			<p>我們的快速安裝程序是一個精簡的 Oil 套件介面，能讓你一行命令建立一個新的專案，你也將不再需要在你的 Oil 命令使用 'php'。</p>
+
+			<p>要安裝快速安裝程序，只要打開一個 shell 並執行以下命令：</p>
+
+			<pre class="cli"><code>$ curl get.fuelphp.com/oil | sh</code></pre>
+
+			<p class="note">這將詢問你的密碼，因為它安裝腳本到 /usr/bin。</p>
+
+			<p>現在你可以在你的專案裡使用 'oil' 取代 'php oil'。</p>
+
+			<p>要建立一個新的專案，只要運行：</p>
+
+			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
+
+			<p>這將在你給定名稱的目錄裡建立一個文件夾，接著複製容器與所有子模組到該目錄。</p>
+
+			<p>注：這也將運行 <code class="cli">$ oil refine install</code>，使必要的目錄為可寫。</p>
+
+			<h3 id="manual">手動安裝簡介</h3>
+
+			<p>這將在你的網頁伺服器建立 Fuel 框架的預設安裝。</p>
+
+			<ol>
+				<li><a href="download.html">下載 Fuel 框架</a></li>
+				<li>解壓縮／抽取下載的檔案</li>
+				<li>移動檔案到你的伺服器
+					<ul>
+						<li>注意在程式碼裡的 public 目錄，等於你的網頁伺服器的公開文件目錄，也就是，public_html、public、htdocs等。移動其內容到這些目錄，或一個你要使用 Fuel 的網頁根目錄下的子目錄。</li>
+						<li>促進安全性原因，放置 Fuel 目錄於公開文件目錄之外。</li>
+						<li>編輯 index.php 裡的路徑指向你的應用程式、核心＆套件目錄。</li>
+					</ul>
+<pre class="plain"><code>/
+  fuel/
+    app/
+    core/
+    packages/
+  public/
+    .htaccess
+    assets/
+    index.php
+  oil
+</code></pre>
+				</li>
+				<li>
+					手動修改文件夾的權限為可寫，或運行：
+<pre class="cli"><code>$ php oil refine install
+	Made writable: APPPATH/cache
+	Made writable: APPPATH/logs
+	Made writable: APPPATH/tmp
+</code>
+</pre>
+				</li>
+			</ol>
+
+			<h2 id="configuration">配置</h2>
+
+			<p>主要的配置在 app/config/config.php，根據你的喜好編輯它。</p>
+
+			<h2 id="install_inside_root">安裝在文件根目錄</h2>
+
+			<p>As explained in point 3, for security reasons it is strongly advised NOT to install Fuel inside your webserver's document root.</p>
+			<p>
+				However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
+				is used to quickly setup new development environments without the need to restart the webserver.
+			</p>
+			<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
+<pre class="plain"><code>
+&lt;IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	RewriteBase /public
+
+	RewriteRule ^(/)?$ index.php/$1 [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+
+	RewriteRule ^(.*)$ index.php/$1 [L]
+&lt;/IfModule>
+</code>
+</pre>
+
+			<h2 id="setting_the_environment">設定環境</h2>
+
+			<p>
+				預設情況下，環境設定為開發模式。Fuel 使用環境去定義使用什麼資料庫設定，但你可以在其他東西使用它。
+			</p>
+			<p>
+				要設定環境，將以下行拖放進你的 .htaccess 檔案。
+			</p>
+			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
+			<p>
+				詳細可用選項在 Fuel 類別裡的 <a href="../classes/fuel.html#class_constants">Class constants</a>。
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>

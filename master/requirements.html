@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/combined.css">
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './';
+	</script>
+	<script src="./assets/js/combined.js"></script>
+	<title>需求 - FuelPHP 文件</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<h1>
+					<strong>FuelPHP，PHP 5.3框架</strong>
+					文件
+				</h1>
+
+				<form id="google_search">
+					<p>
+						<span id="search_clear">&nbsp;</span>
+						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
+						<input type="text" value="" id="search_input" name="search_input" />
+					</p>
+				</form>
+			</div>
+			<nav>
+
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">文件目錄</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="cse">
+			<div id="cse_point"></div>
+			<div id="cse_content"></div>
+		</div>
+
+		<div id="main">
+
+			<h2>需求</h2>
+			<h5 id="web_server">網頁伺服器</h5>
+			<ul>
+				<li>任何網頁伺服器。Fuel 已在 Apache、IIS 與 Nginx 測試。</li>
+				<li>運行於所有主要的作業系統包含 *nix 與 Windows。</li>
+			</ul>
+			<h5 id="php_version">PHP版本</h5>
+			<ul>
+				<li>5.3或更高的版本是必要的。</li>
+			</ul>
+			<h5 id="php_extensions">PHP 擴充</h5>
+			<p>
+				Fuel 使用 PHP 定義為「擴展」的功能。為了避免任何可能的相容性問題，Fuel 只使用被撰寫在 <a href="http://php.net">PHP 網站</a>文件中作為 PHP 代碼一部份的擴展。如果使用 PECL 庫中的部分擴展（這需要由系統管理員手動安裝），如果存在的話，Fuel 將會使用這些擴展，否則將修正。
+			</p>
+			<p>以下是使用的擴展列表，以及哪些類別（classes）使用到：</p>
+			<table class="config valign">
+				<tbody>
+					<tr>
+						<th class="small">擴展</th>
+						<th class="small">用於</th>
+						<th>評論</th>
+					</tr>
+					<tr>
+						<td>fileinfo</td>
+						<td>Upload</td>
+						<td><a href="http://php.net/manual/en/book.fileinfo.php">文件</a><br />
+						請注意，在 Windows 平台上，可能需要手動安裝一個 DLL。</td>
+					</tr>
+					<tr>
+						<td>mbstring</td>
+						<td>n/a</td>
+						<td><a href="http://php.net/manual/en/book.mbstring.php">文件</a><br />
+						如果不存在，該框架將沒有多字節支援。你可以確認 MBSTRING 常數以了解是否你的安裝已啟用多字節支援。</td>
+					</tr>
+					<tr>
+						<td>mcrypt</td>
+						<td>Crypt</td>
+						<td><a href="http://php.net/manual/en/book.mcrypt.php">文件</a><br />
+						如果不存在，PHPSecLib 會被用來模擬它的功能。</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="recommended">推薦</h3>
+			<ul>
+				<li>網頁伺服器 - 運行在 *nix 上的 Apache。</li>
+				<li>PHP 版本 - 5.3.2</li>
+				<li>mod_rewrite - 從 URL 中移除 index.php。</li>
+				<li><a href="http://www.phpunit.de/manual/current/en/index.html">PHPUnit</a> - 3.5.12</li>
+			</ul>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
