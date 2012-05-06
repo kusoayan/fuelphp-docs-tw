@@ -47,36 +47,36 @@
 			<br />
 			<h3 id="command">命令列安裝</h3>
 		    <p class="note">目前只能在 *nix 系統（Linux、OS X、Unix、等等）運行。</p>
-			<p>我們的快速安裝程序是一個精簡的 Oil 套件介面，能讓你一行命令建立一個新的專案，你也將不再需要在你的 Oil 命令使用 'php'。</p>
+			<p>我們的快速安裝程序是一個精簡的 Oil 套件介面，能讓你以一行命令建立一個新的專案，你也將不再需要於你的 Oil 命令前加上 'php'。</p>
 
 			<p>要安裝快速安裝程序，只要打開一個 shell 並執行以下命令：</p>
 
 			<pre class="cli"><code>$ curl get.fuelphp.com/oil | sh</code></pre>
 
-			<p class="note">這將詢問你的密碼，因為它安裝腳本到 /usr/bin。</p>
+			<p class="note">這將會需要你的密碼授權，因為它會安裝 script 到 /usr/bin。</p>
 
-			<p>現在你可以在你的專案裡使用 'oil' 取代 'php oil'。</p>
+			<p>現在你已經可以在你的專案裡使用 'oil' 這個命令取代 'php oil'。</p>
 
 			<p>要建立一個新的專案，只要運行：</p>
 
 			<pre class="cli"><code>$ oil create &lt;project_name&gt;</code></pre>
 
-			<p>這將在你給定名稱的目錄裡建立一個文件夾，接著複製容器與所有子模組到該目錄。</p>
+			<p>這將在你給定名稱的目錄裡建立一個資料夾，接著複製版本控管倉庫中的檔案以及所有子模組到該目錄。</p>
 
-			<p>注：這也將運行 <code class="cli">$ oil refine install</code>，使必要的目錄為可寫。</p>
+			<p>注意：這同時包含了 <code class="cli">$ oil refine install</code> 這個使必要的目錄變為可寫入的指令。</p>
 
 			<h3 id="manual">手動安裝簡介</h3>
 
-			<p>這將在你的網頁伺服器建立 Fuel 框架的預設安裝。</p>
+			<p>接下來的方法將在你的網頁伺服器安裝預設的 Fuel 框架。</p>
 
 			<ol>
-				<li><a href="download.html">下載 Fuel 框架</a></li>
-				<li>解壓縮／抽取下載的檔案</li>
-				<li>移動檔案到你的伺服器
+				<li><a href="download.html">下載 Fuel</a></li>
+				<li>解壓縮下載的檔案</li>
+				<li>將檔案移動到你的伺服器
 					<ul>
-						<li>注意在程式碼裡的 public 目錄，等於你的網頁伺服器的公開文件目錄，也就是，public_html、public、htdocs等。移動其內容到這些目錄，或一個你要使用 Fuel 的網頁根目錄下的子目錄。</li>
-						<li>促進安全性原因，放置 Fuel 目錄於公開文件目錄之外。</li>
-						<li>編輯 index.php 裡的路徑指向你的應用程式、核心＆套件目錄。</li>
+						<li>注意：在程式碼裡的 public 目錄，等於你的網頁伺服器的公開文件目錄，也就是，public_html、public、htdocs等。將 public 其內容到這些目錄，或他們的子目錄底下。</li>
+						<li>安全起見，請將 Fuel 這個資料夾放在公開文件目錄之外。</li>
+						<li>編輯 index.php 裡的路徑使其標明應用程式、核心以及套件的目錄。</li>
 					</ul>
 <pre class="plain"><code>/
   fuel/
@@ -91,7 +91,7 @@
 </code></pre>
 				</li>
 				<li>
-					手動修改文件夾的權限為可寫，或運行：
+					手動將這些資料夾的權限變更為可寫入，或執行：
 <pre class="cli"><code>$ php oil refine install
 	Made writable: APPPATH/cache
 	Made writable: APPPATH/logs
@@ -105,14 +105,13 @@
 
 			<p>主要的配置在 app/config/config.php，根據你的喜好編輯它。</p>
 
-			<h2 id="install_inside_root">安裝在文件根目錄</h2>
+			<h2 id="install_inside_root">安裝在公開目錄底下</h2>
 
-			<p>As explained in point 3, for security reasons it is strongly advised NOT to install Fuel inside your webserver's document root.</p>
-			<p>
-				However, there are cases where you would like to do that, for example for a (local) development environment where Apache's dynamic mass virtual hosting module
+            <p>如同第三點所提及的，為了安全起見，我們非常不建議將 Fuel 安裝在公開目錄之下。</p>
+			<p>然而，有些時候你不可避免的需要這麼做，舉個例子來說：for a (local) development environment where Apache's dynamic mass virtual hosting module
 				is used to quickly setup new development environments without the need to restart the webserver.
 			</p>
-			<p>In that case, you need an additional .htaccess file that you need to place in your document root, which will redirect requests to the site root to your public folder, and also modifies the rewrites to include the public folder:</p>
+			<p>在這種情況下，你需要在你的目錄下額外添加一個 .htaccess 檔案，他將把所有請求重新導向至你的 public 目錄 and also modifies the rewrites to include the public folder:</p>
 <pre class="plain"><code>
 &lt;IfModule mod_rewrite.c>
 	RewriteEngine on
@@ -132,14 +131,14 @@
 			<h2 id="setting_the_environment">設定環境</h2>
 
 			<p>
-				預設情況下，環境設定為開發模式。Fuel 使用環境去定義使用什麼資料庫設定，但你可以在其他東西使用它。
+				預設情況下，環境設定為開發模式。Fuel 使用環境去定義使用哪個資料庫設定，但你也可以應用再其他事情上。
 			</p>
 			<p>
-				要設定環境，將以下行拖放進你的 .htaccess 檔案。
+				要設定環境，將以下這行放進你的 .htaccess 中。
 			</p>
 			<pre class="plain"><code>SetEnv FUEL_ENV production</code></pre>
 			<p>
-				詳細可用選項在 Fuel 類別裡的 <a href="../classes/fuel.html#class_constants">Class constants</a>。
+                更詳細的可用選項可在 Fuel 類別裡的 <a href="../classes/fuel.html#class_constants">類別常數</a> 中找到。
 			</p>
 
 		</div>
