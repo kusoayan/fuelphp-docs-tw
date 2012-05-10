@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,37 +21,40 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Migrate 類別</h2>
-	
-			<p>Migrate 類別能讓你從你的控制器運行、穿行與恢復 <a href="../general/migrations.html">遷移</a> 。</p>
+
+			<p>
+				Migrate 類別能讓你從你的控制器運行、穿行與恢復 <a href="../general/migrations.html">遷移</a> 。
+				Migrations are supported in the application, in modules and in packages.
+			</p>
 
 			<article>
-				<h4 class="method" id="method_current">current()</h4>
-				<p>運行 up 與 down 方法到遷移配置裡當前設定的遷移。</p>
+				<h4 class="method" id="method_current">current($name = 'default', $type = 'app')</h4>
+				<p>Migrates to the current schema set in the migration config.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -59,7 +63,25 @@
 					</tr>
 					<tr>
 						<th>參數</th>
-						<td>無</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>回傳</th>
@@ -68,16 +90,18 @@
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre><code>Migrate::current();</code></pre>
+							<pre class="php"><code>// run the migrations of the application, up to the current schema.
+Migrate::current('default', 'app');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
-				<h4 class="method" id="method_latest">latest()</h4>
-				<p>為曾經的遷移運行 up 方法，在遷移文件夾裡當前與最後的版本之間。</p>
+				<h4 class="method" id="method_latest">latest($name = 'default', $type = 'app')</h4>
+				<p>Migrates to the latest schema set in the migration config.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -86,25 +110,45 @@
 					</tr>
 					<tr>
 						<th>參數</th>
-						<td>無</td>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td>布林</td>
+						<td>bool</td>
 					</tr>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre><code>Migrate::latest();</code></pre>
+							<pre class="php"><code>// run the migrations of the 'mypackage' package, up to the latest schema.
+Migrate::latest('mypackage', 'package');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
-				<h4 class="method" id="method_version">version($version)</h4>
-				<p><strong>version</strong> 方法將移動遷移往上或往下，以設定架構在一個特定的遷移。</p>
+				<h4 class="method" id="method_version">version($version, $name = 'default', $type = 'app')</h4>
+				<p>The <strong>version</strong> method will move the migrations up or down to set the schema at a specific migration version.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -123,19 +167,31 @@
 								<tr>
 									<th><kbd>$version</kbd></th>
 									<td><i>必要</i></td>
-									<td>你要遷移的版本。</td>
+									<td>The version you are migrating to. If you specify <strong>null</strong>, it will migrate to the latest version.</td>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
 								</tr>
 							</table>
 						</td>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td>混合 - 依據 <var>$return_type</var>。</td>
+						<td>mixed - The number of the version migrated to, or <strong>false</strong> in case the requested version was the current version.</td>
 					</tr>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>Migrate::version($version)</code></pre>
+							<pre class="php"><code>// migrate the module 'mymodule' to version 10
+Migrate::version(10, 'mymodule', 'module');
+</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -146,7 +202,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

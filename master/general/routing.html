@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -164,6 +165,25 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 				Note that this currently only works for routes that <kbd>DO NOT</kbd> contain a regex, and only for routes defined in <kbd>app/config/routes.php</kbd>, not for module routes.
 			</p>
 
+			<h3 id="inline_routes">Inline routes</h3>
+
+			<p>A route does not have to resolve to a controller method. FuelPHP also supports inline routes, which are defined as a Closure that replaces the controller method.</p>
+
+			<p>Example route:</p>
+
+			<pre class="php"><code>return array(
+    'secret/mystuff' => function () {
+		// this route only works in development
+		if (\Fuel::$env == \Fuel::DEVELOPMENT)
+		{
+			return \Request::forge('secret/mystuff/keepout', false);
+		}
+		else
+		{
+			throw new HttpNotFoundException('This page is only accessable in development.');
+		}
+};</code></pre>
+
 			<h3 id="module_routing">模組 &amp; 路由</h3>
 
 			<p><a href="modules.html#module_routing">Read about how modules handle routing</a>.</p>
@@ -172,7 +192,7 @@ echo Html::anchor(Router::get('admin_overview'), 'Overview');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

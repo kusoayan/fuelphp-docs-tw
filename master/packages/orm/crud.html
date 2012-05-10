@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -63,7 +64,7 @@ $new = new Model_Example();
 $new->property = 'something';
 $new->save();
 
-// 選項 2, use factory instead of new
+// 選項 2, use forge instead of new
 $new = Model_Example::forge();</code></pre>
 
 					<p class="note">After <kbd>save()</kbd> the model has been saved to the database and if you're using an
@@ -78,7 +79,7 @@ $new = Model_Example::forge();</code></pre>
 $new = new Model_Example($props);
 $new->save();
 
-// 選項 2, use factory instead of new
+// 選項 2, use forge instead of new
 $new = Model_Example::forge($props)->save();</code></pre>
 				</article>
 
@@ -163,7 +164,7 @@ $entry->delete();</code></pre>
 
 					<p>Again nothing more to it: Find and delete.</p>
 
-					<p class="note">In the previous example the <kbd>$entry</kbd> variable and it's object still exist. The
+					<p class="note">In the previous example the <kbd>$entry</kbd> variable and its object still exist. The
 						primary keys are however set to <kbd>null</kbd> and the object itself is considered a new instance. If
 						you save it after deletion it will be re-entered into the database and be given a new primary key when
 						<kbd>auto_increment</kbd> is switched on.</p>
@@ -209,7 +210,7 @@ Model_Article::find('all', array('where' => array(array('category_id', '=', 5), 
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

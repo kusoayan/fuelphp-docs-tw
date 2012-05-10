@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "File::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>File Usage - 類別 - FuelPHP 文件</title>
+	<title>File 用法 - 類別 - FuelPHP 文件</title>
 </head>
 <body>
 	<div id="container">
@@ -20,44 +21,44 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>File Class</h2>
-	
+
 			<p>
 				The file class offers a set of methods to working with files &amp; directories. This can be done through
 				some helper methods or through a more advanced object oriented method where all files and directories are
 				wrapped in objects.
 			</p>
-	
+
 			<section>
 				<h2 id="usage">Usage</h2>
-	
+
 				<p>The File class's basic usage is through its helper methods which are listed below.</p>
 			</section>
-	
+
 			<article>
 				<h4 class="method" id="method_create">create($basepath, $name, $contents = null, $area = null)</h4>
 				<p>Create a file.</p>
@@ -120,7 +121,7 @@
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_create_dir">create_dir($basepath, $name, $chmod = 0777, $area = null)</h4>
 				<p>Create a directory.</p>
@@ -170,7 +171,7 @@
 					<tr>
 						<th>Throws</th>
 						<td>
-							<kbd>InvalidPathException</kbd> when the basepath does not exists or is not writable.
+							<kbd>InvalidPathException</kbd> when the basepath does not exist or is not writable.
 							<kbd>FileAccessException</kbd> when the basepath is not writable.
 						</td>
 					</tr>
@@ -183,7 +184,7 @@
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_read">read($path, $as_string = false, $area = null)</h4>
 				<p>Reads a file and returns it ($as_string == true) or adds it to the output ($as_string == false).</p>
@@ -230,9 +231,9 @@
 					</tr>
 					<tr>
 						<th>Throws</th>
-						<td><kbd>InvalidPathException</kbd> when the file does not exists.</td>
+						<td><kbd>InvalidPathException</kbd> when the file does not exist.</td>
 					</tr>
-	
+
 					<tr>
 						<th>範例</th>
 						<td>
@@ -243,7 +244,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_read_dir">read_dir($path, $depth = 0, $filter = null, $area = null)</h4>
 				<p>Reads directory contents into an array.</p>
@@ -310,7 +311,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_update">update($basepath, $name, $contents = null, $area = null)</h4>
 				<p>Updates a file.</p>
@@ -373,7 +374,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_append">append($basepath, $name, $contents = null, $area = null)</h4>
 				<p>Appends to an existing file.</p>
@@ -436,7 +437,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rename">rename($path, $new_path, $area = null)</h4>
 				<p>Rename directory or file.</p>
@@ -476,7 +477,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>rename()</em></td>
+						<td><kbd>boolean</kbd> result of <em>rename()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -488,13 +489,14 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>File::rename(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>// rename 'test.txt' to 'newname.txt', and move it to a sub-directory
+File::rename(DOCROOT.'test.txt', DOCROOT.'folder/newname.txt');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_rename_dir">rename_dir($path, $new_path, $area = null)</h4>
 				<p>Alias for File::rename</p>
@@ -534,7 +536,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>rename()</em></td>
+						<td><kbd>boolean</kbd> result of <em>rename()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -552,10 +554,10 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_copy">copy($path, $new_path, $area = null)</h4>
-				<p>Copy's a file.</p>
+				<p>Copies a file.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -579,7 +581,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 								<tr>
 									<th><kbd>$new_path</kbd></th>
 									<td><em>必要</em></td>
-									<td>Path to copy to</td>
+									<td>Full path, including filename, to copy to</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -592,7 +594,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>copy()</em></td>
+						<td><kbd>boolean</kbd> result of <em>copy()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -606,16 +608,17 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>File::copy(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>// copy the file 'test.txt' from the docroot to a sub directory
+File::copy(DOCROOT.'test.txt', DOCROOT.'folder/test.txt');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_copy_dir">copy_dir($path, $new_path, $area = null)</h4>
-				<p>Copy's a directory.</p>
+				<p>Copies a directory.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -652,7 +655,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>copy()</em></td>
+						<td><kbd>boolean</kbd> result of <em>copy()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -665,13 +668,13 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>File::copy(DOCROOT.'/test.txt', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>File::copy_dir(DOCROOT.'/test', DOCROOT.'/newname');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($path, $area = null)</h4>
 				<p>Deletes a file.</p>
@@ -706,7 +709,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>unlink()</em></td>
+						<td><kbd>boolean</kbd> result of <em>unlink()</em></td>
 					</tr>
 					<tr>
 						<th>Throws</th>
@@ -724,7 +727,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete_dir">delete_dir($path, $recursive = true, $delete_top = true, $area = null)</h4>
 				<p>Deletes a file.</p>
@@ -769,26 +772,26 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tr>
 					<tr>
 						<th>回傳</th>
-						<td><kbd>boolen</kbd> result of <em>unlink()</em> or true when not deleting content of subdirectories</td>
+						<td><kbd>boolean</kbd> result of <em>unlink()</em> or true when not deleting content of subdirectories</td>
 					</tr>
 					<tr>
 						<th>Throws</th>
 						<td>
 							<kbd>OutsideAreaException</kbd> when a path not inside the file area.
 							<kbd>InvalidPathException</kbd> when the source path is not a directory.
-							<kbd>FileAccessException</kbd> when somethng went wrong during the delete process.
+							<kbd>FileAccessException</kbd> when something went wrong during the delete process.
 						</td>
 					</tr>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>File::delete_dir(DOCROOT.'/my_dir', DOCROOT.'/newname.txt');</code></pre>
+							<pre class="php"><code>File::delete_dir(DOCROOT.'/my_dir');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_open_file">open_file($path, $lock = true, $area = null)</h4>
 				<p>Opens a file and locks it.</p>
@@ -846,7 +849,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_close_file">close_file($resource, $area = null)</h4>
 				<p>Closes a file and unlocks it.</p>
@@ -886,7 +889,7 @@ $file_content = File::read(DOCROOT.'test.txt', true);</code></pre>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>$resource = File::ope_file(DOCROOT.'/my_dir/text.txt');
+							<pre class="php"><code>$resource = File::open_file(DOCROOT.'/my_dir/text.txt');
 // Do something with the resource
 File::close_file($resource);</code></pre>
 						</td>
@@ -894,7 +897,7 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get">get($path, $config = array(), $area = null)</h4>
 				<p>Fetches a file handler for the given file. <a href="handlers.html">Read more about handlers.</a></p>
@@ -916,7 +919,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file or directory to be wrapped in a the handler</td>
+									<td>Path to the file or directory to be wrapped in a handler</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
@@ -952,7 +955,7 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_url">get_url($path, $config = array(), $area = null)</h4>
 				<p>Retrieves the public url to a file. A url must be set in the base config or in the area config of the used area.</p>
@@ -974,7 +977,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$config</kbd></th>
@@ -1011,7 +1014,7 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_permissions">get_permissions($path, $area = null)</h4>
 				<p>Retrieves the octal permissions for a file or directory.</p>
@@ -1033,7 +1036,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1065,7 +1068,7 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_get_time">get_time($path, $type = 'modified', $area = null)</h4>
 				<p>Retrieves the created or modified time of a file or directory.</p>
@@ -1087,12 +1090,12 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$type</kbd></th>
 									<td><strong>'modified'</strong></td>
-									<td>Time of time to retrieve. Must be <em>modified</em> or <em>created</em></td>
+									<td>Type of time to retrieve. Must be <em>modified</em> or <em>created</em></td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1123,9 +1126,9 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
-				<h4 class="method" id="method_get_size">get_size($path, $type = 'modified', $area = null)</h4>
+				<h4 class="method" id="method_get_size">get_size($path, $area = null)</h4>
 				<p>Retrieves size in bytes for a file.</p>
 				<table class="method">
 					<tbody>
@@ -1145,7 +1148,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1177,7 +1180,7 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_file_info">file_info($path, $area = null)</h4>
 				<p>Retrieves an array of information about the specified file.</p>
@@ -1199,7 +1202,7 @@ File::close_file($resource);</code></pre>
 								<tr>
 									<th><kbd>$path</kbd></th>
 									<td><em>必要</em></td>
-									<td>path to the file </td>
+									<td>Path to the file</td>
 								</tr>
 								<tr>
 									<th><kbd>$area</kbd></th>
@@ -1215,7 +1218,7 @@ File::close_file($resource);</code></pre>
 						<td>
 							An array with file information items. The array will contain path, filename and extension information,
 							the file size and permissions, the creation and last modified timestamps, the detected mime-type and
-							the file's characterset.
+							the file's character set.
 						</td>
 					</tr>
 					<tr>
@@ -1234,10 +1237,10 @@ File::close_file($resource);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
-				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null)</h4>
-				<p>Download a file.</p>
+				<h4 class="method" id="method_download">download($path, $name = null, $mime = null, $area = null, $exit = true)</h4>
+				<p>Outputs a file as download.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -1274,6 +1277,11 @@ File::close_file($resource);</code></pre>
 									<td>Area object to use, defaults to main config (see <a href="advanced.html">advanced
 									usage</a> for more information)</td>
 								</tr>
+								<tr>
+									<th><kbd>$exit</kbd></th>
+									<td><kbd>true</kbd></td>
+									<td>If false, return from the method instead of terminating after the download is finished</td>
+								</tr>
 							</table>
 						</td>
 					</tr>
@@ -1301,7 +1309,7 @@ File::close_file($resource);</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

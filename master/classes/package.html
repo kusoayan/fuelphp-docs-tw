@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,34 +21,34 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Package 類別</h2>
-	
+
 			<p><kbd>Package</kbd> 類別能讓你簡單地載入、卸載、檢查套件是否載入、或取得所有已載入的套件。</p>
-	
+
 			<article>
 				<h4 class="method" id="method_load">load($package, $path = null)</h4>
 				<p><strong>load</strong> 方法能讓你在執行階段載入單一或更多套件。如果套件無法找到將會拋出一個 <kbd>PackageNotFoundException</kbd>。</p>
@@ -73,8 +74,8 @@
 								</tr>
 								<tr>
 									<th><kbd>$path</kbd></th>
-									<td><code>套件路徑</code></td>
-									<td>要載入的套件名稱，或一個套件與套件路徑的陣列。</td>
+									<td><code>PKGPATH</code></td>
+									<td>指向套件安裝所在的文件夾路徑。</td>
 								</tr>
 							</table>
 						</td>
@@ -103,7 +104,7 @@ Package::load('awesome'); // 拋出一個 PackageNotFoundException
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_unload">unload($package)</h4>
 				<p><strong>unload</strong> 方法能讓你在執行階段卸載套件。</p>
@@ -145,7 +146,7 @@ Package::unload('orm');
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_loaded">loaded($package = null)</h4>
 				<p><strong>loaded</strong> 方法能讓你檢查是否套件已經被載入。如果沒有給套件名稱，會回傳所有已載入的套件。</p>
@@ -202,7 +203,7 @@ array(
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

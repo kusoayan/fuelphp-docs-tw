@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -77,8 +78,10 @@
 					<tr>
 						<th>DOCROOT</th>
 						<td>
-							到公開目錄的路徑（<em>/path/to/public</em>）。
-							index.php 駐留的地方。一切可訪問於使用者生命且能透過瀏覽器訪問。
+							Path to the location where the 'startup script' is.
+							For you web application, 到公開目錄的路徑（<em>/path/to/public</em>）。
+							This is where index.php resides. Everything accessible to user lives and is accessible via the browser.
+							For oil command, path to where oil command resides.
 						</td>
 					</tr>
 					<tr>
@@ -91,11 +94,19 @@
 				</tbody>
 			</table>
 
+			<p class="note">
+				<strong>Note:</strong> When you use the Oil package, you have to make the same changes in the 'oil' file in the docroot of your website.
+			</p>
+
+			<p class="note">
+				<strong>Note:</strong> When you want to run unit tests, you have to make the same changes in the 'phpunit.xml' file in the fuelphp core folder.
+			</p>
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

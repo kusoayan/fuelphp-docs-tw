@@ -4,12 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
 	</script>
 	<script src="./../assets/js/combined.js"></script>
-	<title>HMCV 請求 - 一般 - FuelPHP 文件</title>
+	<title>HMVC 請求 - 一般 - FuelPHP 文件</title>
 </head>
 <body>
 	<div id="container">
@@ -68,9 +69,9 @@ echo $widget;
 			</p>
 
 			<p>
-				Loading views in HMVC request is the same as in normal requests and controllers accessed by HMVC request 
-				are also approachable via the browser. However, in some cases you may not want the component (for example, a widget) 
-				to be accessed through the browser. In those cases, you'll want to check if the request is made through HMVC or the browser. 
+				Loading views in HMVC request is the same as in normal requests and controllers accessed by HMVC request
+				are also approachable via the browser. However, in some cases you may not want the component (for example, a widget)
+				to be accessed through the browser. In those cases, you'll want to check if the request is made through HMVC or the browser.
 				The following example shows you how to check for a HMVC request:
 			</p>
 
@@ -97,7 +98,7 @@ class Controller_Widget extends Controller
 
 			<p>
 				When a 404 occurs during a HMVC request, a <kbd>HttpNotFoundException</kbd> is thrown. If uncaught, it will trigger
-				a full 404 message using <kbd>Request::show_404()</kbd>. However, you can prevent this and handle the 404
+				the load of the frameworks default 404 page. However, you can prevent this and handle the 404
 				yourself:
 			</p>
 
@@ -114,7 +115,7 @@ catch (HttpNotFoundException $e)
 			<h3>Traversing Request instances</h3>
 
 			<p>If you want to access other Requests, you can traverse them using two methods:
-				<kbd>$request->parent()</kbd> and <kbd>$request->children</kbd>. The parent is the Request during
+				<kbd>$request->parent()</kbd> and <kbd>$request->children()</kbd>. The parent is the Request during
 				which the current Request was created (<kbd>null</kbd> for the main Request). The children are all the Requests
 				created during the current Request.</p>
 
@@ -122,7 +123,7 @@ catch (HttpNotFoundException $e)
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

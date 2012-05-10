@@ -4,13 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
 		var class_prefix = "Fuel::";
 	</script>
 	<script src="./../../assets/js/combined.js"></script>
-	<title>Fuel - 類別 - FuelPHP 文件</title>
+	<title>>Upload 用法 - 類別 - FuelPHP 文件</title>
 </head>
 <body>
 	<div id="container">
@@ -68,14 +69,9 @@
 						<th>field</th>
 						<td>字串</td>
 						<td>
-							Name of the form field that was used to upload the file.
-						</td>
-					</tr>
-					<tr>
-						<th>key</th>
-						<td>混合</td>
-						<td>
-							If the form field was defined as an array, the key used. If not, this field is set to false.
+							Name of the form field that was used to upload the file. If the form field was a (multidimensional) array,
+							the	array keys will be added to the fieldname separated by colons.
+							So a field called "field[a][b][]" will be stored as "field:a:b:0".
 						</td>
 					</tr>
 					<tr>
@@ -392,7 +388,7 @@ if ( Upload::is_valid() )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, an array with all validated files is returned.
+									<td>index number of the file in the uploaded files array, or the name of a form field. If not specified, an array with all validated files is returned.
 									If the index number is invalid, or if the index refers to a file with an error status of <strong>true</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
@@ -410,6 +406,12 @@ foreach( Upload::get_files() as $file )
 {
 	// do something with the file info
 }
+
+// get the first uploaded file by index
+if ( ! Upload::get_files(0) )
+{
+	// first uploaded file was not succesfully uploaded
+}
 </code></pre>
 						</td>
 					</tr>
@@ -419,7 +421,7 @@ foreach( Upload::get_files() as $file )
 
 			<article>
 				<h4 class="method" id="method_get_errors">get_errors($index = null)</h4>
-				<p>The <strong>get_files</strong> method returns a multi-dimensional array with all files uploaded that have an error status of <strong>true</strong>.</p>
+				<p>The <strong>get_errors</strong> method returns a multi-dimensional array with all files uploaded that have an error status of <strong>true</strong>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -438,7 +440,7 @@ foreach( Upload::get_files() as $file )
 								<tr>
 									<th><kbd>$index</kbd></th>
 									<td><i>optional</i></td>
-									<td>index number of the file in the uploaded files array. If not specified, an array with all invalid files is returned.
+									<td>index number of the file in the uploaded files array or the name of a form field. If not specified, an array with all invalid files is returned.
 									If the index number is invalid, or if the index refers to a file with an error status of <strong>false</strong>, an exception is thrown.</td>
 								</tr>
 							</table>
@@ -455,6 +457,13 @@ foreach( Upload::get_files() as $file )
 foreach( Upload::get_errors() as $file )
 {
 	// do something with the file info
+}
+
+// get the first uploaded file by fieldname
+if ( Upload::get_error('new_image') )
+{
+	// there was an error uploading the file for the form field 'new_image'
+	// defined as &lt;input type="file" name="new_image" /&gt;
 }
 </code></pre>
 						</td>
@@ -556,7 +565,7 @@ Upload::register('before', function (&amp;$file) {
 
 				<p class="note">
 					<strong>Note:</strong> if you alter the contents of the <strong>$file</strong> array in your callback, you have to make sure that the
-					information is still valid, as the Upload class won't perform it's checks again. The only exception to this rule is the '<strong>saved_to</strong>' path,
+					information is still valid, as the Upload class won't perform its checks again. The only exception to this rule is the '<strong>saved_to</strong>' path,
 					which will be checked and created if required after the callback has been executed.
 				</p>
 			</article>
@@ -602,8 +611,8 @@ Upload::register('before', function (&amp;$file) {
 							<pre class="php"><code>// process the uploaded files
 // set the max size to 10Kb, and allow overwrites of duplicate files
 Upload::process( array(
-	'max_size' => 10240, 
-	'auto_rename' => false, 
+	'max_size' => 10240,
+	'auto_rename' => false,
 	'overwrite' => true
 ) );
 </code></pre>
@@ -687,7 +696,7 @@ foreach ( Upload::get_errors() as $key => $file )
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>
