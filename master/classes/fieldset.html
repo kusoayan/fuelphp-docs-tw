@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -47,7 +48,7 @@
 			<h2>Fieldset Class</h2>
 
 			<p>
-				The Fieldset class is used to create a form and handle its' validation in an object oriented way. It uses the Form
+				The Fieldset class is used to create a form and handle its validation in an object oriented way. It uses the Form
 				and Validation classes. This class itself is only meant to model the fieldset and its fields while the other
 				two classes do the real work.
 			</p>
@@ -57,7 +58,7 @@
 
 			<article>
 				<h4 class="method" id="method_forge">forge($name = 'default', $config = array())</h4>
-				<p>The <strong>forge</strong> method returns a new Fieldset instance. Note: there can only be one instance per <kdb>$name</kbd>.</p>
+				<p>The <strong>forge</strong> method returns a new Fieldset instance. Note: there can only be one instance per <kbd>$name</kbd>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -249,7 +250,138 @@ $form->add('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 
 
 // Example Checkbox
 $ops = array('male', 'female');
-$form->add('gender', '', array('options' => $ops, 'type' => 'checkbox', 'value' => 'true'));</code></pre>
+$form->add('gender', '', array('options' => $ops, 'type' => 'checkbox', 'value' => 'true'));
+
+// Example of an Email input
+$form->add('email', 'E-mail', array('type' => 'email', 'class' => 'pretty_input'),  array(array('required'), array('valid_email')));</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_before">add_before($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just before an already defined field identified by <strong>$fieldname</strong>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><i>required</i></td>
+										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>Field label</td>
+									</tr>
+									<tr>
+										<th><kbd>$attributes</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>HTML attributes as an associative array</td>
+									</tr>
+									<tr>
+										<th><kbd>$rules</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Validation rules to be applied to this Field</td>
+									</tr>
+									<tr>
+										<th><kbd>$fieldname</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Already defined field to which this field must be prepended</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset_Field Object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Radio button field, to be added before the 'location' field.
+$ops = array('male', 'female');
+$form->add_before('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_add_after">add_after($name, $label = '', array $attributes = array(), array $rules = array(), $fieldname = null)</h4>
+				<p>Creates a Fieldset_Field instance and adds it to the current Fieldset, just after an already defined field identified by <strong>$fieldname</strong>.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>No</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tbody>
+									<tr>
+										<th>Param</th>
+										<th>Default</th>
+										<th class="description">Description</th>
+									</tr>
+									<tr>
+										<th><kbd>$name</kbd></th>
+										<td><i>required</i></td>
+										<td>HTML name attribute, also used for referencing the field within the Fieldset</td>
+									</tr>
+									<tr>
+										<th><kbd>$label</kbd></th>
+										<td><pre class="php"><code>''</code></pre></td>
+										<td>Field label</td>
+									</tr>
+									<tr>
+										<th><kbd>$attributes</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>HTML attributes as an associative array</td>
+									</tr>
+									<tr>
+										<th><kbd>$rules</kbd></th>
+										<td><pre class="php"><code>array()</code></pre></td>
+										<td>Validation rules to be applied to this Field</td>
+									</tr>
+									<tr>
+										<th><kbd>$fieldname</kbd></th>
+										<td><pre class="php"><code>null</code></pre></td>
+										<td>Already defined field to which this field must be appended</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>\Fieldset_Field Object</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// Radio button field, to be added after the 'location' field.
+$ops = array('male', 'female');
+$form->add_after('gender', '', array('options' => $ops, 'type' => 'radio', 'value' => 'true'), array(), 'location');</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -480,7 +612,7 @@ $article_form->set_config('key', 'value');</code></pre>
 									<tr>
 										<th><kbd>$repopulate</kbd></th>
 										<td><code>false</code></td>
-										<td>Use the repopulate() method after inital populating</td>
+										<td>Use the repopulate() method after initial populating</td>
 									</tr>
 								</tbody>
 							</table>
@@ -657,8 +789,8 @@ $article_form->set_config('key', 'value');</code></pre>
 			</article>
 
 			<article>
-				<h4 class="method" id="method_errors">errors($field = null)</h4>
-				<p>Alias for $this->validation()->errors(). Gets an array of input value(s) that did not pass validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
+				<h4 class="method" id="method_error">error($field = null)</h4>
+				<p>Alias for $this->validation()->error(). Gets an array of input value(s) that did not pass validation. See <a href="validation/validation.html#usage">Validation</a>.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -691,7 +823,7 @@ $article_form->set_config('key', 'value');</code></pre>
 					<tr>
 						<th>範例</th>
 						<td>
-							<pre class="php"><code>$errors = $article_form->errors();</code></pre>
+							<pre class="php"><code>$errors = $article_form->error();</code></pre>
 						</td>
 					</tr>
 					</tbody>
@@ -779,7 +911,7 @@ $fieldset->form->set_attribute('id', 'edit_article_form');
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

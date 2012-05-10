@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../../';
@@ -45,11 +46,120 @@
 			<h2>SimpleAuth - 簡介</h2>
 
 			<p>
-				SimpleAuth 是一個被包含在框架內的 Auth 套件。除了作為一個運行中的 Auth 實現，也是其他 Auth 驅動程序的範例。
+				SimpleAuth ，正如它的名字所暗示的，是一個被包含在 Auth 套件的簡易認證系統。
+				除了作為一個運行中的 Auth 實現，也是其他 Auth 驅動程序的範例。
 				當建立自己的驅動程序時，你可以作為參考使用。
 			</p>
 
 			<h3 id="configuration">配置</h3>
+
+			<p>
+				The SimpleAuth authentication system is configured through a configuration file, not suprisingly through the
+				'simpleauth' configuration file. A default file is provided in the Auth package. You should copy this file
+				to your app/config folder before making any changes.
+			</p>
+
+				<p>The following configuration values can be defined:</p>
+				<table class="config">
+					<tbody>
+						<tr class="header">
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<th>db_connection</th>
+							<td>string</td>
+							<td><pre class="php"><code>null</code></pre>
+							</td>
+							<td>
+								Name of the database connection to use. This should match the definition in your applications db.php configuration file.
+								Set it to <strong>null</strong> to use the default DB instance.
+							</td>
+						</tr>
+						<tr>
+							<th>table_name</th>
+							<td>string</td>
+							<td><pre class="php"><code>'users'</code></pre>
+							</td>
+							<td>
+								Name of the users table to use.
+							</td>
+						</tr>
+						<tr>
+							<th>table_columns</th>
+							<td>array</td>
+							<td><pre class="php"><code>array('*')</code></pre>
+							</td>
+							<td>
+								List of columns to select from the users table, or '*' to select all columns. You have to at least include
+								'username', 'password', 'email', 'last_login', 'login_hash', 'group' and 'profile_fields'.
+							</td>
+						</tr>
+						<tr>
+							<th>guest_login</th>
+							<td>boolean</td>
+							<td><pre class="php"><code>true</code></pre>
+							</td>
+							<td>
+								If true a dummy 'guest' user will be created if no one is logged in. This allows you to use the group and
+								acl drivers even when no one is logged in.
+							</td>
+						</tr>
+						<tr>
+							<th>groups</th>
+							<td>array</td>
+							<td><pre class="php"><code>array()</code></pre>
+							</td>
+							<td>
+								Defined groups, to be used by the SimpleAuth groups driver. See <a href="./groups.html">here</a> for an
+								description of the groups array structure.
+							</td>
+						</tr>
+						<tr>
+							<th>roles</th>
+							<td>array</td>
+							<td><pre class="php"><code>array()</code></pre>
+							</td>
+							<td>
+								Defined roles, to be used by the SimpleAuth acl driver. See <a href="./acl.html">here</a> for an
+								description of the roles array structure.
+							</td>
+						</tr>
+						<tr>
+							<th>login_hash_salt</th>
+							<td>string</td>
+							<td><pre class="php"><code>'put_some_salt_in_here'</code></pre>
+							</td>
+							<td>
+								To make the passwords used by the SimpleAuth drivers extra secure, a salt value is used when hashing
+								the passwords to store them into the database. Make sure you change this default to a very random string!
+								To hash passwords, SimpleAuth uses <a href="http://en.wikipedia.org/wiki/PBKDF2" target="_blank">PBKDF2</a>, a very secure hashing mechanism.
+							</td>
+						</tr>
+						<tr>
+							<th>username_post_key</th>
+							<td>string</td>
+							<td><pre class="php"><code>'username'</code></pre>
+							</td>
+							<td>
+								Name of the input field on the login form that contains the username.
+							</td>
+						</tr>
+						<tr>
+							<th>password_post_key</th>
+							<td>string</td>
+							<td><pre class="php"><code>'password'</code></pre>
+							</td>
+							<td>
+								Name of the input field on the login form that contains the password.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			<h3 id="database">資料庫表</h3>
 
 			<p>
 				SimpleAuth 依賴一張資料表，下面是建立它的 SQL：
@@ -71,12 +181,14 @@
 	)
 )</code></pre>
 
-			<p>這是一個簡單的登入 action</p>
+			<h3 id="example">範例</h3>
+
+			<p>這是一個簡單的登入 action：</p>
 
 			<pre class="php"><code>public function action_login()
 {
 	$data = array();
-	if ($_POST)
+	if (Input::post())
 	{
 
 		// Ok，你按下送出按鈕，讓我們瀏覽一遍
@@ -85,7 +197,7 @@
 		$auth = Auth::instance();
 
 		// 檢查認證，這裡假設你已經建立上表
-		if ($auth->login($_POST['username'],$_POST['password']))
+		if ($auth->login())
 		{
 			// 認證成功，進入
 			Response::redirect('success_page');
@@ -95,20 +207,20 @@
 			// 哎呀，沒你的湯，再試著登入一次。
 			// 設定一些值以重填使用者名稱欄位，並給一些錯誤的文字到視圖
 
-			$data['username']    = $_POST['username'];
+			$data['username']    = Input::post('username');
 			$data['login_error'] = 'Wrong username/password combo. Try again';
 		}
 	}
 
 	// 顯示登入表單
-	echo View::forge('owl/login',$data);
+	echo View::forge('auth/login',$data);
 }</code></pre>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

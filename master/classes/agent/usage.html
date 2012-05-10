@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -167,7 +168,7 @@ switch (Agent::browser())
 	case 'Firefox':
 		// 在此做一些特定的事情
 		break;
-	case 'Internet Explorer':
+	case 'IE':
 		// 在此做一些特定的事情
 		break;
 	case 'Chrome':
@@ -269,7 +270,7 @@ switch (Agent::platform())
 							<th>範例</th>
 							<td>
 								<pre class="php"><code>// 檢查是否使用舊版本的 Internet Explorer。
-if (Agent::browser() == 'Microsoft Internet Explorer' and Agent::version() &lt; 7)
+if (Agent::browser() == 'IE' and Agent::version() &lt; 7)
 {
 	echo "Sorry, no support for outdated browsers!";
 }
@@ -477,11 +478,11 @@ if (Agent::property('cookies') === true)
 								<pre class="php"><code>// 載入一個平台特定的視圖
 if (Agent::is_mobiledevice())
 {
-	$content = View::forge('mobile\viewname');
+	$content = View::forge('mobile/viewname');
 }
 else
 {
-	$content = View::forge('standard\viewname');
+	$content = View::forge('standard/viewname');
 }</code></pre>
 							</td>
 						</tr>
@@ -512,11 +513,11 @@ else
 								<pre class="php"><code>// 載入爬蟲特定視圖（註：這是不可取的！）
 if (Agent::is_robot())
 {
-	$content = View::forge('robot\viewname');
+	$content = View::forge('robot/viewname');
 }
 else
 {
-	$content = View::forge('standard\viewname');
+	$content = View::forge('standard/viewname');
 }</code></pre>
 							</td>
 						</tr>
@@ -530,7 +531,7 @@ else
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

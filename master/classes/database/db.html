@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -1138,12 +1139,32 @@ DB::count_last_query();
 					</tbody>
 				</table>
 			</article>
+			<h3 id="transaction">Transaction example</h3>
 
+				<pre class="php"><code>// typical transaction code flow
+try
+{
+    DB::start_transaction();
+
+    // some query ...
+
+    DB::commit_transaction();
+
+    // return query result
+}
+catch (Exception $e)
+{
+    // rollback pending transactional queries
+    DB::rollback_transaction();
+
+    throw $e;
+}
+</code></pre>
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

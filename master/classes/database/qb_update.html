@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -20,41 +21,41 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2 id="introduction">Query_Builder_Update class</h2>
-			
+
 			<p>(extends <a href="qb_where.html">Query_Builder_Where</a>)</p>
-			
+
 			<p>
 				The Query_Builder_Update class handles all the update operations for the query building process. It extends the
 				Query_Builder_Where class, so all the methods are inherited.
 			</p>
-			
+
 			<h2 id="methods">Methods</h2>
-	
+
 			<article>
 				<h4 class="method" id="method_table">table($table)</h4>
 				<p>The <strong>table</strong> method sets/changes the table to update.</p>
@@ -103,8 +104,8 @@ $query->table('admins');
 					</tbody>
 				</table>
 			</article>
-			
-	
+
+
 			<article>
 				<h4 class="method" id="method_value">value($column, $value)</h4>
 				<p>The <strong>value</strong> method set a column and value to update.</p>
@@ -159,7 +160,7 @@ $query->value('name', 'Frank');
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_set">set(array $pairs)</h4>
 				<p>The <strong>set</strong> method sets the columns and values to update.</p>
@@ -211,7 +212,7 @@ $query->set(array(
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_compile">compile(\Database_Connection$db)</h4>
 				<p>The <strong>compile</strong> method returns the update SQL query as a string.</p>
@@ -267,7 +268,7 @@ $sql = $query->compile($connection);
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_reset">reset()</h4>
 				<p>The <strong>reset</strong> method resets all values of the current instance.</p>
@@ -318,7 +319,7 @@ $sql = $query->compile($connection);
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_join">join($table, $type = null)</h4>
 				<p>The <strong>join</strong> method appends tables to join.</p>
@@ -366,7 +367,7 @@ $sql = $query->compile($connection);
 					</tbody>
 				</table>
 			</article>
-			
+
 			<article>
 				<h4 class="method" id="method_on">on($c1, $op, $c2)</h4>
 				<p>The <strong>on</strong> method adds "ON ..." conditions for the last created JOIN statement.</p>
@@ -431,12 +432,12 @@ $query->value('users.profile_type', \DB::expr('`profiles`.`type`'));
 					</tbody>
 				</table>
 			</article>
-			
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

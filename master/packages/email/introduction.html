@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -157,6 +158,15 @@
 							</td>
 						</tr>
 						<tr>
+							<th>encode_headers</th>
+							<td>布林</td>
+							<td><pre class="php"><code>true</code></pre></td>
+							<td>
+								是否對主題及接收者名稱進行編碼。
+								需要 <a href="http://www.php.net/manual/en/ref.mbstring.php" target="_blank">mbstring 擴展</a>。
+							</td>
+						</tr>
+						<tr>
 							<th>charset</th>
 							<td>字串</td>
 							<td><pre class="php"><code>'utf-8'</code></pre></td>
@@ -300,6 +310,14 @@
 								留下空 ('') 以允許絕對路徑。
 							</td>
 						</tr>
+						<tr>
+							<th>return-path</th>
+							<td>字串｜false</td>
+							<td><pre class="php"><code>false</code></pre></td>
+							<td>
+								使用它設定預設的回傳路徑郵件地址。
+							</td>
+						</tr>
 					</tbody>
 				</table>
 
@@ -309,7 +327,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

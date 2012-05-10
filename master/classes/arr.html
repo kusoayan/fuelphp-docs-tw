@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,34 +21,91 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Arr 類別</h2>
-	
+
 			<p>Arr 類別是一套與陣列協作的輔助函數。</p>
-	
+
+			<article>
+				<h4 class="method" id="method_is_assoc">is_assoc($arr)</h4>
+				<p>The <strong>is_assoc</strong> method checks if the array passed is an associative array or not.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$arr</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to check.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>
+$arr = array('foo', 'bar', 'baz', 'yay');
+$result = Arr::is_assoc($arr);
+// Result: false
+
+$arr = array('foo' => 'foo', 'bar' => 'bar', 'baz' => 'baz', 'yay' => 'yay');
+$result = Arr::is_assoc($arr);
+// Result: true
+
+/*
+ * Note that even if the '2' is defined as a string, PHP will store this internally
+ * as an integer, and therefore this is NOT seen as an assoc array!
+ */
+$arr = array(0 => 'foo', 1 => 'bar', '2' => 'baz', 3 => 'yay');
+$result = Arr::is_assoc($arr);
+// Result: false!
+
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<article>
 				<h4 class="method" id="method_to_assoc">to_assoc($arr)</h4>
 				<p>The <strong>to_assoc</strong> method turns a non-associative array into an associative array if it has an even number of segments.  If it has an odd number of segments it returns <kbd>null</kbd>.</p>
@@ -79,6 +137,11 @@
 						<td>array|null</td>
 					</tr>
 					<tr>
+						<th>Throws</th>
+						<td><kbd>BadMethodCallException</kbd> when the number of values in the given array is
+							uneven</td>
+					</tr>
+					<tr>
 						<th>範例</th>
 						<td>
 							<pre class="php"><code>$arr = array('foo', 'bar', 'baz', 'yay');
@@ -102,7 +165,7 @@ null
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_assoc_to_keyval" class="method">assoc_to_keyval($assoc = null, $key_field = null, $val_field = null)</h4>
 				<p>The <strong>assoc_to_keyval</strong> method turns a multi-dimensional array into a key=>val array.</p>
@@ -144,6 +207,11 @@ null
 						<td>陣列</td>
 					</tr>
 					<tr>
+						<th>Throws</th>
+						<td><kbd>InvalidArgumentException</kbd> when the first argument isn't an array or doesn't
+							implement the Iterator interface.</td>
+					</tr>
+					<tr>
 						<th>範例</th>
 						<td>
 							<pre class="php"><code>$people = array(
@@ -171,7 +239,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_average" class="method">average($array = null)</h4>
 				<p>The <strong>average</strong> method takes all values of an array and returns the average value.</p>
@@ -211,7 +279,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_flatten" class="method">flatten($array, $glue = ':', $reset = true)</h4>
 				<p>The <strong>flatten</strong> method flattens a multi-dimensional array (both associative and indexed) down into a 1 dimensional array.</p>
@@ -281,7 +349,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_flatten_assoc" class="method">flatten_assoc($array, $glue = ':', $reset = true)</h4>
 				<p>The <strong>flatten_assoc</strong> method flattens a multi-dimensional associative array down into a 1 dimensional associative array.</p>
@@ -364,7 +432,75 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
+			<article>
+				<h4 id="method_reverse_flatten" class="method">reverse_flatten($array, $glue = ':')</h4>
+				<p>The <strong>reverse_flatten</strong> method unflattens a flattened multi-dimensional array (both associative and indexed) into its original form.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$array</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to unflatten.</td>
+								</tr>
+								<tr>
+									<th><kbd>$glue</kbd></th>
+									<td><pre class="php"><code>:</code></pre></td>
+									<td>The string used to glue the keys together with</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$flattened = array(
+	'0_name' => 'James',
+	'0_age' => 24,
+	'1_name' => 'John',
+	'1_age' => 34,
+);
+
+print_r( Arr::reverse_flatten($flattened, '_') );
+
+// Returns
+Array
+(
+	[0] => Array
+		(
+			[name] => James
+			[age] => 24
+		)
+
+	[1] => Array
+		(
+			[name] => John
+			[age] => 34
+		)
+)</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<article>
 				<h4 id="method_filter_prefixed" class="method">filter_prefixed($array, $prefix = 'prefix_', $remove_prefix = true)</h4>
 				<p>The <strong>filter_prefixed</strong> method filters the array on a prefix. It returns an array where the key starts with the specified prefix.</p>
@@ -439,7 +575,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_filter_keys" class="method">filter_keys($array, $keys, $remove = false)</h4>
 				<p>The <strong>filter_keys</strong> method filters a given array to a set of keys. It returns an array that contains only the items whose keys are in the <kbd>$keys</kbd> array. Can also remove the specified <kbd>$keys</kbd> from an array.</p>
@@ -500,7 +636,7 @@ Array
 )
 
 // Let's remove some keys
-print_r( Arr::filter_keys($arr, array('user_name', 'user_surname', true)));
+print_r(Arr::filter_keys($arr, array('user_name', 'user_surname'), true));
 
 // Returns
 Array
@@ -514,7 +650,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_get" class="method">get($array, $key, $default = false)</h4>
 				<p>The <strong>get</strong> method returns the element of the given array using dot-notation, or a default if it is not set.</p>
@@ -582,7 +718,7 @@ echo Arr::get($person, "location.city", "Unknown City");
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_set" class="method">set(&amp;$array, $key, $value = false)</h4>
 				<p>The <strong>set</strong> method sets the element of the given array using dot-notation.<br />
@@ -651,7 +787,7 @@ Arr::set($person, array("name" => "John", "location.city" => "Philadelphia"));</
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_delete" class="method">delete(&amp;$array, $key)</h4>
 				<p>The <strong>delete</strong> method the element of the given array using dot-notation.<br />
@@ -716,7 +852,7 @@ $result = Arr::delete($person, array("name", "location.doesnotexist"));
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_insert" class="method">insert(Array &amp;$original, $value, $pos)</h4>
 				<p>The <strong>insert</strong> method is mainly an array_splice alias with added error checking <br />
@@ -813,7 +949,70 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
+			<article>
+				<h4 id="method_insert_before_key" class="method">insert_before_key(Array &amp;$original, $value, $key)</h4>
+				<p>The <strong>insert_before_key</strong> method adds an element to an array before the key specified <br />
+				<u>WARNING</u>: The original array is edited by reference, only boolean success is returned</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$original</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to use</td>
+								</tr>
+								<tr>
+									<th><kbd>$value</kbd></th>
+									<td><em>required</em></td>
+									<td>The value(s) to insert</td>
+								</tr>
+								<tr>
+									<th><kbd>$key</kbd></th>
+									<td><em>required</em></td>
+									<td>The key before which to insert</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>boolean</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$people = array("Jack", "Jill");
+
+Arr::insert_before_key($people, "Humpty", 1 );
+print_r( $people );
+
+// Returns
+Array
+(
+	[0] => Jack
+	[1] => Humpty
+	[2] => Jill
+)
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<article>
 				<h4 id="method_insert_after_key" class="method">insert_after_key(Array &amp;$original, $value, $key)</h4>
 				<p>The <strong>insert_after_key</strong> method adds an element to an array after the key specified <br />
@@ -859,7 +1058,7 @@ Array
 						<th>範例</th>
 						<td>
 							<pre class="php"><code>$people = array("Jack", "Jill");
-	
+
 Arr::insert_after_key($people, "Humpty", 1 );
 print_r( $people );
 
@@ -876,7 +1075,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_insert_after_value" class="method">insert_after_value(Array &amp;$original, $value, $search)</h4>
 				<p>The <strong>insert_after_value</strong> method adds an element to an array after the value specified <br />
@@ -939,7 +1138,7 @@ Array
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 id="method_sort" class="method">sort($array, $key, $order = 'asc', $sort_flags = SORT_REGULAR)</h4>
 				<p>The <strong>sort</strong> method sorts a multi-dimensional array by its values.</p>
@@ -1042,9 +1241,76 @@ array(
 					</tbody>
 				</table>
 			</article>
-	
+
+			<article>
+				<h4 id="method_in_array_recursive" class="method">in_array_recursive($needle, $haystack, $strict = false)</h4>
+				<p>The <strong>in_array_recursive</strong> method checks wether a value is in an array recursively.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th class="legend">Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th class="description">Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$needle</kbd></th>
+									<td><em>required</em></td>
+									<td>The value to search for</td>
+								</tr>
+								<tr>
+									<th><kbd>$haystack</kbd></th>
+									<td><em>required</em></td>
+									<td>The array to search in.</td>
+								</tr>
+								<tr>
+									<th><kbd>$strict</kbd></th>
+									<td><pre class="php"><code>false</code></pre></td>
+									<td>The wether to use == or ===.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>bool</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>$arr = array(
+	'one' => 1,
+	2,
+	3,
+	array(
+		56
+	),
+	87
+);
+
+var_dump(Arr::in_array_recursive('56', $arr));
+// is true
+
+var_dump(Arr::in_array_recursive('87', $arr, true));
+// is false
+
+var_dump(Arr::in_array_recursive(87, $arr, true));
+// is true</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
 			<h3 id="procedural_helpers">Procedural helpers</h3>
-	
+
 			<article>
 				<h4 id="function_in_arrayi" class="method" data-class="">in_arrayi($needle, $haystack)</h4>
 				<p>The <strong>in_arrayi</strong> function is a case-insensitive version of in_array.</p>
@@ -1097,7 +1363,7 @@ $bool = in_arrayi('Thi', array('something','tHis'));
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -19,39 +20,39 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>環境</h2>
-			
+
 			<p>
 				環境的支持幫助 FuelPHP 和你的應用程式在環境設定的基礎上作出決定。
 				FuelPHP 本身根據現行的環境，使用環境設定去載入／覆寫額外的配置設定。
 			</p>
-			
+
 			<h3 id="possible_envs">環境列表</h3>
-			
+
 			<p>
 				FuelPHP 有四種預定的環境。
 			</p>
@@ -74,16 +75,16 @@
 					產品環境。
 				</li>
 			</ul>
-			
+
 			<h3 id="setting_env">設定你的環境</h3>
-			
+
 			<p>
 				設定你的環境是通過設定 <em>FUEL_ENV</em> 伺服器變數，或手動更改在
 				 <em>fuel/app/bootstrap.php</em> 的設定。
 			</p>
-			
+
 			<pre class="php"><code>// 在 app/bootstrap.php 之中
-			
+
 /**
  * 你的環境。可以設定為以下任一種：
  *
@@ -93,15 +94,15 @@
  * Fuel::PRODUCTION
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);</code></pre>
-			
+
 			<h3 id="env_config">環境與配置</h3>
-			
+
 			<p>
 				基於應用程式設定的環境，Config 類別尋找特定環境下的配置檔案。
 				Config 類別將在一個被命名為當前環境的目錄裡，尋找相同的配置檔案名稱。
 				下面舉一個例子來說明：
 			</p>
-			
+
 			<pre class="plain"><code>app/
   config/
     stuff.php
@@ -109,22 +110,22 @@ Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOP
         stuff.php
       production/
         stuff.php</code></pre>
-			
+
 			<p>
 				當你的環境設定為 <kbd>\Fuel::DEVELOPMENT</kbd> ，<em>stuff.php</em> 的配置會與 <em>development/stuff.php</em> 合併。
 				如果環境被設定為 <kbd>\Fuel::DEVELOPMENT</kbd> 以外的任何其他環境，額外的配置檔案不會被載入。
                                 這同樣適用於其他任何你可以使用的環境。
 			</p>
-			
+
 			<p>
 				一個真實的例子就是資料庫的配置，沒有預設的配置設定（這可能是非常危險的），只有特定環境下的配置設定。
 			</p>
-		
+
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,36 +21,36 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Cookie Class</h2>
-	
+
 			<p>The cookie class allows you to get, set and delete cookies.</p>
-	
+
 			<h3 id="configuration">配置</h3>
-	
+
 			<p>The cookie class is configured through the global application configuration file, <strong>app/config/config.php</strong>. It defines a section called '<strong>cookie</strong>', in which the following settings are defined:</p>
 			<table class="method">
 				<tbody>
@@ -92,10 +93,10 @@
 				</tbody>
 			</table>
 			<p>If one or more of these values are missing from the global configuration, the class will use the defaults as defined in this table.</p>
-	
+
 			<article>
-				<h4 class="method" id="method_get">get($name, $default = null)</h4>
-				<p>The <strong>get</strong> method allows you to read a $_COOKIE variable.</p>
+				<h4 class="method" id="method_get">get($name = null, $default = null)</h4>
+				<p>The <strong>get</strong> method allows you to read a $_COOKIE variable. If no name given, all cookies are returned.</p>
 				<table class="method">
 					<tbody>
 					<tr>
@@ -113,7 +114,7 @@
 								</tr>
 								<tr>
 									<th><kbd>$name</kbd></th>
-									<td><i>必要</i></td>
+									<td><i>Optional</i></td>
 									<td>The key in the $_COOKIE array.</td>
 								</tr>
 								<tr>
@@ -137,7 +138,7 @@
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_set">set($name, $value, $expiration = null, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
 				<p>The <strong>set</strong> method allows you to create a cookie.</p>
@@ -208,7 +209,7 @@
 				</table>
 				<p>For every parameter not specified or defined as <strong>null</strong>, the globally defined configuration value will be substituted.</p>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_delete">delete($name, $path = null, $domain = null, $secure = null, $httponly = null)</h4>
 				<p>The <strong>delete</strong> method deletes a parameter from the $_COOKIE array.</p>
@@ -284,7 +285,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

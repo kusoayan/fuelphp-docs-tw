@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -79,19 +80,19 @@
 
 	public function action_action1()
 	{
-		$this->template->title = 'Posts &raquo Action1';
+		$this->template->title = 'Posts &raquo; Action1';
 		$this->template->content = View::forge('posts/action1');
 	}
 
 	public function action_action2()
 	{
-		$this->template->title = 'Posts &raquo Action2';
+		$this->template->title = 'Posts &raquo; Action2';
 		$this->template->content = View::forge('posts/action2');
 	}
 
 	public function action_action3()
 	{
-		$this->template->title = 'Posts &raquo Action3';
+		$this->template->title = 'Posts &raquo; Action3';
 		$this->template->content = View::forge('posts/action3');
 	}
 
@@ -112,13 +113,25 @@
 
 				<p>那將建立一個使用 <a href="../orm/intro.html">Orm</a> 的簡單模型，所以確認在你的配置檔案中套件已經啟用，它看起來像這樣：</p>
 
-				<pre class="php"><code>
+				<pre class="php"><code>class Model_Post extends Orm\Model {
 
-class Model_Post extends Orm\Model {
+	protected static $_properties = array(
+		'id',
+		'title',
+		'body',
+		'created_at',
+		'updated_at'
+	);
 
 	protected static $_observers = array(
-		'Orm\Observer_CreatedAt' => array('before_insert'),
-		'Orm\Observer_UpdatedAt' => array('before_save'),
+		'Orm\Observer_CreatedAt' => array(
+			'events' => array('before_insert'),
+			'mysql_timestamp' => false,
+		),
+		'Orm\Observer_UpdatedAt' => array(
+			'events' => array('before_save'),
+			'mysql_timestamp' => false,
+		),
 	);
 
 }
@@ -149,6 +162,10 @@ class Create_posts
 		\DBUtil::drop_table('posts');
 	}
 }</code></pre>
+				<p>如果你不希望產生遷移，只需提供 <strong>--no-migration</strong>：</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --no-migration
+	Created model: APPPATH/classes/model/post.php</code></pre>
 
 				<h4>使用 Model_Crud 產生模型</h4>
 
@@ -160,9 +177,7 @@ class Create_posts
 
 				<p>那將建立一個使用 Fuel\Core\Model_Crud 的簡單模型。它看起來像這樣：</p>
 
-				<pre class="php"><code>
-
-class Model_Post extends \Model_Crud
+				<pre class="php"><code>class Model_Post extends \Model_Crud
 {
 	protected static $_properties = array(
 		'id',
@@ -178,7 +193,7 @@ class Model_Post extends \Model_Crud
 }</code></pre>
 
 
-				<h4>產生沒有時間戳記選項的模型</h4>
+				<h4 id="no_timestamp">產生沒有時間戳記選項的模型</h4>
 
 				<p>添加 <code>--no-timestamp</code> 以排除 建立／更新 的欄位與觀察者。</p>
 
@@ -216,6 +231,67 @@ class Create_posts
   }
 }
 </code></pre>
+				<h4 id="timestamp_fields">變更時間戳記欄位</h4>
+
+				<p>
+					不管是在 ORM 模型或 CRUD 模型（\Model_Crud），當你使用時間欄位時，你可以選擇你自己的欄位名稱。 使用 <strong>--created-at</strong> 及 <strong>--updated-at</strong>
+					選項去設定你自己的欄位名稱。
+				</p>
+
+				<pre class="cli"><code>$ php oil g model post title:varchar[50] body:text user_id:int --created-at=my_created</code></pre>
+
+				<p>將會給你：</p>
+
+				<pre class="php"><code>&lt;?php
+
+class Model_Post extends \Orm\Model
+{
+	protected static $_properties = array(
+		'id',
+		'title',
+		'body',
+		'user_id',
+		'my_created',
+		'updated_at'
+	);
+
+	protected static $_observers = array(
+		'Orm\Observer_CreatedAt' => array(
+			'events' => array('before_insert'),
+			'mysql_timestamp' => false,
+			'property' => 'my_created',
+		),
+		'Orm\Observer_UpdatedAt' => array(
+			'events' => array('before_save'),
+			'mysql_timestamp' => false,
+		),
+	);
+}</code></pre>
+
+<pre class="php"><code>&lt;?php
+
+namespace Fuel\Migrations;
+
+class Create_posts
+{
+	public function up()
+	{
+		\DBUtil::create_table('posts', array(
+			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
+			'title' => array('constraint' => 50, 'type' => 'varchar'),
+			'body' => array('type' => 'text'),
+			'user_id' => array('constraint' => 11, 'type' => 'int'),
+			'my_created' => array('constraint' => 11, 'type' => 'int'),
+			'updated_at' => array('constraint' => 11, 'type' => 'int'),
+
+		), array('id'));
+	}
+
+	public function down()
+	{
+		\DBUtil::drop_table('posts');
+	}
+}</code></pre>
 
 				<h3 id="running_migrations">執行遷移</h3>
 
@@ -237,6 +313,8 @@ $ php oil refine migrate:down
 
 $ php oil refine migrate:up
 	Migrated to version: 5.</code></pre>
+
+				<p class="note">支援以下欄位類型：<strong>string[n]</strong>、<strong>varchar[n]</strong>、<strong>int[n]</strong>、<strong>enum[value1, value2]</strong>、<strong>decimal[n n]</strong>、<strong>float[n n]</strong>、<strong>text</strong>、<strong>blob</strong>、<strong>datetime</strong>、<strong>date</strong>、<strong>timestamp</strong> 及 <strong>time</strong>。</p>
 
 				<h3 id="migrations">產生遷移</h3>
 
@@ -442,7 +520,7 @@ Migrated to latest version: 3.
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

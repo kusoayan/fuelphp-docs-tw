@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -108,7 +109,7 @@ class Session_Cookie extends Session_Driver
 			<pre class="php"><code>core/classes/session.php
 core/classes/session/cookie.php</code></pre>
 
-			<h5 id="methods">方法</h5>
+			<h5 id="methods_standards">方法</h5>
 
 			<p>Like class names, method names should use underscores to separate words, not CamelCase. Method names should
 				also be all lower case. Visibility should always be included (public, protected, private).<br />
@@ -245,8 +246,8 @@ $var = Uri::segment(3) ?: 'default';</code></pre>
 
 			<p>Comparing function/method returns and variables should be type aware, for example some functions may return
 				<kbd>false</kbd>, and when comparing this return the type sensitive operators such as <kbd>===</kbd> or <kbd>!==</kbd>. Additionally, use of
-				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&&</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
-				<kbd>&&</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
+				<kbd>and</kbd> or <kbd>or</kbd> is preferred over <kbd>&amp;&amp;</kbd> or <kbd>||</kbd> for readability. In some cases, this cannot be avoided and the use of
+				<kbd>&amp;&amp;</kbd> or <kbd>||</kbd> as its required may be used. The <kbd>!</kbd> should have spaces on both sides when used.</p>
 
 			<pre class="php"><code>if ($var == false and $other_var != 'some_value')
 if ($var === false or my_function() !== false)
@@ -260,17 +261,23 @@ if ( ! $var)</code></pre>
 {
 
 }</code></pre>
+			<p>In case the class is empty, braces will be on the same line as the definition:</p>
 
-			<h5 id="function_method">Function/Method 聲明</h5>
+			<pre class="php"><code>class Empty_Class { }</code></pre>
 
-			<p>Function/Method 的左大括號必須總是在新的一行開始，其結構具有相同的縮排。</p>
+			<h5 id="function_method">Function/Method/Closure 聲明</h5>
+
+			<p>Function/Method/Closure 的左大括號必須總是在新的一行開始，其結構具有相同的縮排。</p>
 
 			<pre class="php"><code>class Session
 {
 
 	public static function get_flash($name, $data)
 	{
-		// Some code here
+		$closure = function($a, $b)
+		{
+			// Your closure code here
+		}
 	}
 
 }</code></pre>
@@ -317,7 +324,7 @@ $var++; // 遞增前無空格
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

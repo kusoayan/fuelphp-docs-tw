@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -80,7 +81,7 @@
 
 				<p>When this isn't set the <kbd>Model_</kbd> prefix is removed from the classname and the classname is
 					pluralized. Thus "Model_Article" expects table "articles". If you don't follow this convention you can
-					change it by setting the <kbd>$table_name</kbd> property.</p>
+					change it by setting the <kbd>$_table_name</kbd> property.</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
@@ -107,23 +108,23 @@
 				<h3 id="propperties">protected static $_properties</h3>
 
 				<p>There's already a simple example above of adding all model properties, they can also be configured by
-				using the columnname as the key and setting options like type, label & validation.</p>
+				using the column name as the key and setting options like type, label & validation.</p>
 
 				<pre class="php"><code>class Model_Article extends Orm\Model
 {
 	protected static $_properties = array(
-		'id', // both validation & typing observers will ignore the PK
+		'id', // both validation &amp; typing observers will ignore the PK
 		'name' => array(
 			'data_type' => 'varchar',
 			'label' => 'Article Name',
 			'validation' => array('required', 'min_length' => array(3), 'max_length' => array(20)),
-			'form' => array('data_type' => 'text'),
+			'form' => array('type' => 'text'),
 			'default' => 'New article',
 		),
 		'gender' => array(
 			'data_type' => 'varchar',
 			'label' => 'Gender',
-			'form' => array('data_type' => 'select', 'options' => array('m' => 'Male', 'f' => 'Female')),
+			'form' => array('type' => 'select', 'options' => array('m' => 'Male', 'f' => 'Female')),
 			'validation' => array('required'),
 		),
 		'created_at' => array(
@@ -135,7 +136,7 @@
 		),
 		'updated_at' => array('data_type' => 'int', 'label' => 'Updated At')
 	);
-)</code></pre>
+}</code></pre>
 
 				<p>Form attributes can be passed in the form of an array as shown in the example.</p>
 
@@ -168,7 +169,7 @@
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

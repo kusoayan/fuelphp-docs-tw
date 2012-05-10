@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./assets/css/combined.css">
+	<link rel="shortcut icon" href="./favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './';
@@ -64,9 +65,7 @@
 				</li>
 				<li>
 					<strong>在你本地的容器切換至你的版本</strong><br/>
-					<code class="cli">$ git checkout -b 1.1/develop origin/1.1/develop</code>
-					or
-					<code class="cli">$ git checkout -b 1.0/develop origin/1.0/develop</code>
+					<code class="cli">$ git checkout -b 1.2/develop origin/1.2/develop</code> (bugfix branch for the current release )
 				</li>
 				<li>
 					<strong>在你本地的容器修正錯誤並送交</strong><br/>
@@ -79,7 +78,9 @@
 				</li>
 				<li>
 					<strong>請求拉出</strong><br/>
-					在你所在相同的分支上請求拉出（或取決於你的分支）。一個 1.0/develop 分支在 1.0/develop 請求拉出，1.1/develop 在 1.1/develop，以此類推。使用「更新送交範圍」介面以引導你在正確的分支請求。
+					在你所在相同的分支上請求拉出（或取決於你的分支）。
+					使用「更新送交範圍」介面以引導你在正確的分支請求。
+					Pull requests are only accepted on the current release bugfix branch (1.2/develop) or the next release development branch (1.3/develop).
 				</li>
 				<li>
 					<strong>等待你出名的時刻</strong><br/>
@@ -90,14 +91,14 @@
 			<h3 id="enhancements">非錯誤貢獻</h3>
 
 			<p>
-				非錯誤的貢獻是指新特色、優化和所有其他的改動。所有這些請求，必須在最新發展分支動作。所以拉出最新版本的 Dev 分支進行變更，並請求一個拉出。
+				非錯誤的貢獻是指新特色、優化和所有其他的改動。所有這些請求，必須在最新發展分支動作。所以拉出最新版本的 1.3/develop 分支進行變更，並請求一個拉出。
 			</p>
 
 		</div>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

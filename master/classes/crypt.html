@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,40 +21,40 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Crypt 類別</h2>
-	
+
 			<p>
 				Crypt 類別允許加密或解密一個字串。Crypt 類別也可用於內部例如 Fuel Session 類別。
 			</p>
 			<p>它使用由 PHPSecLib 提供的加密和雜湊方法，所以它不是依賴外部模組如 mcrypt 來作用的。</p>
-	
+
 			<section>
 				<h3 id="configuration">配置</h3>
-	
+
 				<p>
 					The Crypt class is configured through the <kbd>app/config/crypt.php</kbd> configuration file. It will be generated and populated with random values when you first use the Crypt class or if one of the required configuration values is missing.
 				</p>
@@ -99,7 +100,7 @@
 					If you assign keys manually, note that they are base64_encoded, and the length must be a multiple of 4 to be able to decode it. Make sure the length is correct!
 				</p>
 			</section>
-	
+
 			<article>
 				<h4 class="method" id="method_encode">encode($value, $key = false)</h4>
 				<p>The <strong>encode</strong> method encrypts a string value, optionally with a custom encryption key.</p>
@@ -145,7 +146,7 @@ $value = Crypt::encode($value, 'R@nd0mK~Y');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_decode">decode($value, $key = false)</h4>
 				<p>The <strong>decode</strong> method decrypts a string value, optionally with a custom key.</p>
@@ -196,7 +197,7 @@ $value = Crypt::decode($value, 'R@nd0mK~Y');</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

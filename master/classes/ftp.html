@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,37 +21,37 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-		
+
 			<h2>Ftp Class</h2>
-	
+
 			<p>The FTP class allows you to upload, download, move and mirror files with remote servers over the FTP protocol.</p>
-	
+
 			<section>
 				<h3 id="configuration">配置</h3>
-	
+
 				<p>The FTP class is configured through the <kbd>fuel/core/config/ftp.php</kbd> configuration file. It is already populated with a default configuration group. You can override this configuration and add new groups by copying this config file to your application config directory, and modify that file as needed.</p>
 				<p>The following configuration settings can be defined:</p>
 				<table class="config">
@@ -120,11 +121,11 @@
 					</tbody>
 				</table>
 			</section>
-	
-	
+
+
 			<article>
-				<h4 class="method" id="method_factory">factory()</h4>
-				<p>The <strong>factory</strong> method is used to create a new instance of the FTP class and can either reference a different config group
+				<h4 class="method" id="method_forge">forge()</h4>
+				<p>The <strong>forge</strong> method is used to create a new instance of the FTP class and can either reference a different config group
 					or be passed an array of <a href="config.html">configuration options</a>.</p>
 				<table class="method">
 					<tbody>
@@ -169,13 +170,13 @@ $ftp2 = Ftp::forge('image-storage');
 
 // Connect to a server on-the-fly
 $ftp3 = Ftp::forge(array(
-	'hostname'		=>		'myspace.com',
-	'username'		=>		'',
-	'password'		=>		'',
-	'port'			=>		21,
-	'passive'		=>		true,
-	'ssl_mode'		=>		false,
-	'debug'			=>		false
+	'hostname' => 'fuelphp.com',
+	'username' => '',
+	'password' => '',
+	'port'     => 21,
+	'passive'  => true,
+	'ssl_mode' => false,
+	'debug'    => false
 ));
 
 if ($ftp3->delete_dir('/') === true)
@@ -185,14 +186,14 @@ if ($ftp3->delete_dir('/') === true)
 
 else
 {
-	exit('You tried and that is the main thing.);
+	exit('You tried and that is the main thing.');
 }</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_change_dir">change_dir($path = '')</h4>
 				<p>The <strong>change_dir</strong> changes the "current directory".</p>
@@ -233,7 +234,7 @@ $ftp->change_dir('/public_html/some/path/');</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_mkdir">mkdir($path, $permissions = null)</h4>
 				<p>The <strong>mkdir</strong> method is used to create a new directory on the remote server.</p>
@@ -279,7 +280,7 @@ $ftp->mkdir('/public_html/uploads/', 0777);</code></pre>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_upload">upload($local_path, $remote_path, $mode = 'auto', $permissions = null)</h4>
 				<p>Upload a file or directory from the local server to the remote server.</p>
@@ -331,13 +332,13 @@ $ftp->mkdir('/public_html/uploads/', 0777);</code></pre>
 						<th>範例</th>
 						<td>
 							<pre class="php"><code>// Upload myfile.html
-$ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775)</code></pre>
+$ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_download">download($remote_path, $local_path, $mode = 'auto')</h4>
 				<p>Download a file or directory from the remote server to the local server.</p>
@@ -385,13 +386,13 @@ $ftp->upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 
 						<th>範例</th>
 						<td>
 							<pre class="php"><code>// Download myotherfile.html
-$ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii')</code></pre>
+$ftp->download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');</code></pre>
 						</td>
 					</tr>
 					</tbody>
 				</table>
 			</article>
-	
+
 			<article>
 				<h4 class="method" id="method_mirror">mirror($local_path, $remote_path)</h4>
 				<p>
@@ -450,7 +451,7 @@ $ftp->close();</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

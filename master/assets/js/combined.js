@@ -329,7 +329,7 @@ function setup()
 
 var panes = {};
 var pane_names = {
-	'main': 'Fuel',
+	'main': 'FuelPHP',
 	'core': 'Core',
 	'auth': 'Auth',
 	'email': 'Email',
@@ -359,23 +359,25 @@ panes.main = {
 		"編碼標準":	"general/coding_standards.html",
 		"配置":	"general/configuration.html",
 		"常數":		"general/constants.html",
+                "環境":		"general/environments.html",
+                "模型-視圖-控制器":	"general/mvc.html",
+                "模型":			"general/models.html",
+                "視圖":			"general/views.html",
+		"視圖模型":		"general/viewmodels.html",
 		"控制器": {
 			"基礎" :		"general/controllers/base.html",
 			"樣板":		"general/controllers/template.html",
-			"支架":		"general/controllers/rest.html"
+			"支架":		"general/controllers/rest.html",
+                        "Hybrid":		"general/controllers/hybrid.html"
 		},
-		"環境":		"general/environments.html",
-		"HMVC 請求":	"general/hmvc.html",
-		"模組":			"general/modules.html",
-		"模型":			"general/models.html",
-		"模型-視圖-控制器":	"general/mvc.html",
-		"遷移":		"general/migrations.html",
-		"視圖":			"general/views.html",
-		"視圖模型":		"general/viewmodels.html",
 		"路由":			"general/routing.html",
-		"套件":			"general/packages.html",
-		"安全性":			"general/security.html",
+                "安全性":			"general/security.html",
+                "模組":			"general/modules.html",
+                "套件":			"general/packages.html",
+		"HMVC 請求":	"general/hmvc.html",
+		"遷移":		"general/migrations.html",
 		"任務":			"general/tasks.html",
+                "單元測試":		"general/unit_testing.html",
 		"錯誤處理":	"general/error.html",
 		"剖析":		"general/profiling.html",
 	}
@@ -388,7 +390,11 @@ panes.core = {
 			"用法":	"classes/agent/usage.html",
 		},
 		"Arr":		"classes/arr.html",
-		"Asset":		"classes/asset.html",
+                "Asset": {
+			"配置":	"classes/asset/config.html",
+			"用法":			"classes/asset/usage.html",
+			"進階":			"classes/asset/advanced.html"
+		},
 		"Autoloader":	"classes/autoloader.html",
 		"Cache": {
 			"配置":	"classes/cache/config.html",
@@ -423,8 +429,9 @@ panes.core = {
 			"簡介":	"classes/file/intro.html",
 			"用法":		"classes/file/usage.html",
 			"進階":		"classes/file/advanced.html",
-			"處置器":		"classes/file/handlers.html",
+			"處理程序":		"classes/file/handlers.html",
 		},
+                "Finder":		"classes/finder.html",
 		"Form":			"classes/form.html",
 		"Format":		"classes/format.html",
 		"Ftp":			"classes/ftp.html",
@@ -435,12 +442,14 @@ panes.core = {
 		"Input":		"classes/input.html",
 		"Lang":			"classes/lang.html",
 		"Log":	    	"classes/log.html",
+                "Markdown":		"classes/markdown.html",
 		"Migrate":		"classes/migrate.html",
 		"Model_Crud": {
 			"簡介": "classes/model_crud/introduction.html",
 			"方法": "classes/model_crud/methods.html"
 			//"Usage": "classes/model_crud/usage.html",
 		},
+                "Module":		"classes/module.html",
 		"Mongo_Db": {
 			"簡介":	"classes/mongo/introduction.html",
 			"方法":		"classes/mongo/methods.html"
@@ -448,11 +457,11 @@ panes.core = {
 		"Num":			"classes/num.html",
 		"Package":		"classes/package.html",
 		"Pagination":	"classes/pagination.html",
-		// "Profiler":	"todo.html",
+                "Profiler":	"classes/profiler.html",
 		"Redis":		"classes/redis.html",
 		"Request":		"classes/request.html",
 		"Response":		"classes/response.html",
-		// "Route":		"todo.html",
+		"Router":		"classes/router.html",
 		"Security":		"classes/security.html",
 		"Session": {
 			"配置":	"classes/session/config.html",
@@ -460,6 +469,11 @@ panes.core = {
 			"進階":			"classes/session/advanced.html"
 		},
 		"Str": 			"classes/str.html",
+		"Theme": {
+			"簡介":	"classes/theme/introduction.html",
+			"方法":	"classes/theme/methods.html",
+			"進階":	"classes/theme/advanced.html"
+		},
 		// "Unzip":		"todo.html", // dont do this, needs to be cleaned up. forget it exists.
 		"Upload": {
 			"配置":	"classes/upload/config.html",
@@ -490,9 +504,10 @@ panes.auth = {
 	"Auth 套件": {
 		"簡介":	"packages/auth/intro.html",
 		"用法":	"packages/auth/usage.html",
+		"撰寫驅動":	"packages/auth/drivers.html",
 		"驅動類型": {
 			"登入":		"packages/auth/types/login.html",
-			"群組":		"packages/auth/types/groups.html",
+			"群組":		"packages/auth/types/group.html",
 			"ACL":			"packages/auth/types/acl.html"
 		},
 		"SimpleAuth": {
@@ -500,8 +515,7 @@ panes.auth = {
 			"登入":		"packages/auth/simpleauth/login.html",
 			"群組":		"packages/auth/simpleauth/groups.html",
 			"ACL":			"packages/auth/simpleauth/acl.html"
-		},
-		"撰寫驅動":	"packages/auth/drivers.html"
+		}
 	}
 };
 

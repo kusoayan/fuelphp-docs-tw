@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="zh-TW">
 <head>
-	<meta charset="UTF-8">	
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -20,37 +21,37 @@
 					<strong>FuelPHP，PHP 5.3框架</strong>
 					文件
 				</h1>
-				
+
 				<form id="google_search">
 					<p>
 						<span id="search_clear">&nbsp;</span>
 						<input type="submit" name="search_submit" id="search_submit" value="搜尋" />
-						<input type="text" value="" id="search_input" name="search_input" />						
+						<input type="text" value="" id="search_input" name="search_input" />
 					</p>
 				</form>
 			</div>
 			<nav>
-				
+
 				<div class="clear"></div>
 			</nav>
 			<a href="#" id="toc_handle">文件目錄</a>
 			<div class="clear"></div>
 		</header>
-		
+
 		<div id="cse">
 			<div id="cse_point"></div>
 			<div id="cse_content"></div>
 		</div>
-		
+
 		<div id="main">
-			
+
 			<h2>Pagination 類別</h2>
-	
+
 			<p>Pagination 類別能讓你簡單地為你呈現的紀錄設定分頁。</p>
-	
+
 			<section>
 				<h3 id="how_to">如何</h3>
-				<p>一個簡單的例子如何使用 Pagination 類別，<strong>set_config</strong> 方法在此例子中使用。你可以將它放進你控制器內的 action 方法。
+				<p>一個簡單的例子如何使用 Pagination 類別，<strong>set_config</strong> 方法在此例子中使用。你可以將它放進你控制器內的 action 方法。</p>
 				<pre class="php"><code>$config = array(
 	'pagination_url' => 'http://localhost/fuel/welcome/index/',
 	'total_items' => 10,
@@ -74,11 +75,11 @@ $data['example_data'] = DB::select('id', 'value')->from('pagination')
 $data['pagination'] = Pagination::create_links();
 $this->render('welcome/index', $data);</code></pre>
 			</section>
-	
+
 			<section>
 				<h3 id="configuration">配置</h3>
-	
-				<p>你可以藉由使用 <strong>set_config</strong> 方法，或設定一個全域配置陣列，兩種方法配置分頁。</p>
+
+				<p>你可以藉由使用 <strong>set_config</strong> 方法，或設定一個全域配置陣列，這兩種方法配置分頁。</p>
 				<p>可定義以下的配置設定：</p>
 				<table class="config">
 					<tbody>
@@ -117,15 +118,7 @@ $this->render('welcome/index', $data);</code></pre>
 							<td>整數</td>
 							<td><pre class="php"><code>0</code></pre></td>
 							<td>
-								項目總數。
-							</td>
-						</tr>
-						<tr>
-							<th>total_pages</th>
-							<td>整數</td>
-							<td><pre class="php"><code>0</code></pre></td>
-							<td>
-								頁面總數。
+								項目總數。通常這是一個 count() 查詢的結果。
 							</td>
 						</tr>
 						<tr>
@@ -137,9 +130,17 @@ $this->render('welcome/index', $data);</code></pre>
 							</td>
 						</tr>
 						<tr>
+							<th>current_page</th>
+							<td>整數</td>
+							<td><pre class="php"><code>null</code></pre></td>
+							<td>
+								目前的 URI 沒有頁碼時要載入的頁面。如果沒有給定，預設是 1。
+							</td>
+						</tr>
+						<tr>
 							<th>template</th>
 							<td>陣列</td>
-							<td><pre class="php"><code></code></pre></td>
+							<td><pre class="php"><code>array(...)</code></pre></td>
 							<td>
 								關聯陣列包含 HTML 標記建立的分頁元素（見全域配置陣列節的陣列鍵／預設值列表）。
 							</td>
@@ -147,11 +148,11 @@ $this->render('welcome/index', $data);</code></pre>
 					</tbody>
 				</table>
 			</section>
-	
+
 			<section>
 				<article>
 					<h4 id="global_config">全域配置陣列</h4>
-					<p>這個方法能讓你設定分頁配置藉由設定全域配置陣列。
+					<p>這個方法能讓你設定分頁配置藉由設定全域配置陣列。</p>
 					<pre class="php"><code>Config::set('pagination', array(
 	'pagination_url' => 'http://docs.fuelphp.com/',
 	'uri_segment' => 2,
@@ -164,16 +165,22 @@ $this->render('welcome/index', $data);</code></pre>
 		'page_end' => ' &lt;/span&gt;',
 		'previous_start' => '&lt;span class="previous"&gt; ',
 		'previous_end' => ' &lt;/span&gt;',
+		'previous_inactive_start' => ' &lt;/span class="previous-inactive"&gt;',
+		'previous_inactive_end' => ' &lt;/span&gt;',
 		'previous_mark' => '&laquo; ',
 		'next_start' => '&lt;span class="next"&gt; ',
 		'next_end' => ' &lt;/span&gt;',
+		'next_inactive_start' => ' &lt;/span class="next-inactive"&gt;',
+		'next_inactive_end' => ' &lt;/span&gt;',
 		'next_mark' => ' &raquo;',
 		'active_start' => '&lt;span class="active"&gt; ',
 		'active_end' => ' &lt;/span&gt;',
+		'regular_start' => '',
+		'regular_end' => '',
 	),
 ));</code></pre>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_set_config">set_config(array $config)</h4>
 					<p><strong>set_config</strong> 方法能讓你藉由傳遞一個陣列設定分頁配置。</p>
@@ -222,7 +229,7 @@ $this->render('welcome/index', $data);</code></pre>
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_create_links">create_links()</h4>
 					<p><strong>create_links</strong> 方法在視圖裡產生分頁連結。</p>
@@ -249,7 +256,7 @@ $this->render('welcome/index', $data);</code></pre>
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_next_link">next_link($value)</h4>
 					<p><strong>next_link</strong> 方法顯示分頁的「下一頁」連結。</p>
@@ -289,7 +296,7 @@ $this->render('welcome/index', $data);</code></pre>
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_prev_link">prev_link($value)</h4>
 					<p><strong>prev_link</strong> 方法顯示分頁的「上一頁」連結。</p>
@@ -329,7 +336,7 @@ $this->render('welcome/index', $data);</code></pre>
 						</tbody>
 					</table>
 				</article>
-	
+
 				<article>
 					<h4 class="method" id="method_page_links">page_links()</h4>
 					<p><strong>page_links</strong> 方法顯示分頁在上一頁與下一頁之間的頁面連結。</p>
@@ -362,7 +369,7 @@ $this->render('welcome/index', $data);</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

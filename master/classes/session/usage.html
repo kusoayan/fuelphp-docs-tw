@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../../';
@@ -52,12 +53,26 @@
 			</p>
 			<p>
 				The static methods documented on this page use the session driver configured in the configuration via the <kbd>driver</kbd> setting.
-				When you have set the <kbd>auto_initialize</kbd> setting to <kbd>true</kbd>, the session will be loaded and initialized when the Fuel framework loads.
-				If it is set to <kbd>false</kbd>, it will be loaded automatically as soon as you use one of the methods below.
+				When you have set the <kbd>auto_initialize</kbd> setting to <kbd>true</kbd>, a session will be initialized when the Session class is loaded.
+				If it is set to <kbd>false</kbd>, you will have to use one of the methods below, or start a session instance manually, to initialize the session.
+			</p>
+			<p class="note">
+				If your application needs session support, either "<kbd>always_load</kbd>" your session class, or make sure your (base) controllers
+				will load it. If you do load it, but you choose not to <kbd>auto_initialize</kbd> the session, and you don't use any of the session methods,
+				the session will not be refreshed! This can cause unexpected behaviour of your application due to an expired session.
+			</p>
+
+			<h3 id="gc">Garbage Collection</h3>
+
+			<p>
+				There session drivers have a built-in garbage collection mechanism to remove stale entries. Storage backends that
+				have built-in support for data expiration, such as APC, Memcached or Redis, will use that feature, and
+				will auto expire stale cache entries.
 			</p>
 			<p>
-				Note that if you choose not to <kbd>auto_initialize</kbd> the session, and you don't use any of the session methods, the session will not be refreshed!
-				This can cause unexpected behaviour of your application due to an expired session.
+				Storage backends that don't, for example the database or file system drivers, use the gc_probability setting to determine if
+				garbage collection is needed. If so, they will run it in a shutdown event, after the page has been send to the user.
+				Downside of this method is that if this takes some time, the page will not finished to be "loading..." until GC is completed.
 			</p>
 
 			<article>
@@ -125,7 +140,7 @@ $session = Session::instance('myappcookie');
 									<th class="description">描述</th>
 								</tr>
 								<tr>
-									<th><kbd>$name</kbd></th>
+									<th><kbd>$variable</kbd></th>
 									<td><em>string|array</em></td>
 									<td><em>必要</em></td>
 									<td>Name of the session variable to set or associative array of values.</td>
@@ -296,7 +311,7 @@ Session::delete('array.varC');
 									<th class="description">描述</th>
 								</tr>
 								<tr>
-									<th><kbd>$name</kbd></th>
+									<th><kbd>$variable</kbd></th>
 									<td><em>必要</em></td>
 									<td>Name of the session flash variable to set.</td>
 								</tr>
@@ -663,7 +678,7 @@ $session_id = Session::key('session_id');
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>

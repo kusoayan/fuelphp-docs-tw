@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./../assets/css/combined.css">
+	<link rel="shortcut icon" href="./../favicon.ico" />
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">
 		var path = './../';
@@ -51,7 +52,7 @@
 
 			<h3>建立遷移</h3>
 
-			<p>在 app/migrations 文件夾中建立一個檔案。前綴應為一個從 001 起遞增的計數，不跳過數字且沒有兩個數字相匹配。第一個將像 <kbd>app/migrations/001_example.php</kbd>。
+			<p>在 app/migrations 文件夾中建立一個檔案。前綴應為一個從 001 起遞增的計數，不跳過數字且沒有兩個數字相匹配。第一個將像 <kbd>app/migrations/001_example.php</kbd>。</p>
 			<pre class="php"><code>namespace Fuel\Migrations;
 
 class Example
@@ -89,6 +90,18 @@ $ php oil refine migrate:up
 $ php oil refine migrate:down
 $ php oil refine migrate --version=10</code></pre>
 
+			<p>
+				Migrations are supported for modules and packages too. You can specify on the oil commandline if you want to
+				migrate all, or only specific modules and/or packages. If you do, you can use '--default' to indicate you want
+				to include app migrations.
+			</p>
+
+			<pre class="cli"><code>$ php oil refine migrate -all
+$ php oil refine migrate --modules=module1,module2 --packages=package1
+$ php oil refine migrate:up --packages=package1
+$ php oil refine migrate:down --modules=module1,module2 --default
+$ php oil refine migrate --version=10</code></pre>
+
 			<p class="note">
 				<strong>註：</strong>
 				The migrate:current task is to match your schema to the version listed in <kbd>fuel/[app|core]/config/migrate.php</kbd> as if you have just got
@@ -100,7 +113,7 @@ $ php oil refine migrate --version=10</code></pre>
 
 		<footer>
 			<p>
-				&copy; FuelPHP 開發團隊 2010-2011 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
+				&copy; FuelPHP 開發團隊 2010-2012 - <a href="http://fuelphp.com">FuelPHP</a> 在 MIT 授權許可下發布。
 			</p>
 		</footer>
 	</div>
